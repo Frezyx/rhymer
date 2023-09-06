@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:rhymer/features/favorites/favorites.dart';
+import 'package:rhymer/features/history/history.dart';
 import 'package:rhymer/features/home/home.dart';
-import 'package:rhymer/features/poems/poem.dart';
 import 'package:rhymer/features/search/search.dart';
 import 'package:rhymer/features/settings/settings.dart';
 
@@ -24,7 +24,7 @@ class AppRouter extends _$AppRouter {
               path: 'favorites',
             ),
             AutoRoute(
-              page: PoemsRoute.page,
+              page: HistoryRoute.page,
               path: 'poems',
             ),
             AutoRoute(
