@@ -14,5 +14,9 @@ final themeData = ThemeData(
       fontSize: 16,
       fontWeight: FontWeight.w600,
     ),
+    headlineLarge: TextStyle(
+      fontSize: 28,
+      fontWeight: FontWeight.w600,
+    ),
   ),
 );
