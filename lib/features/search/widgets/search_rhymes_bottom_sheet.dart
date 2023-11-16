@@ -4,7 +4,10 @@ import 'package:rhymer/ui/ui.dart';
 class SearchRhymesBottomSheet extends StatelessWidget {
   const SearchRhymesBottomSheet({
     super.key,
+    required this.controller,
   });
+
+  final TextEditingController controller;
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +26,7 @@ class SearchRhymesBottomSheet extends StatelessWidget {
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: TextField(
+                      controller: controller,
                       decoration: InputDecoration(
                         hintText: 'Начни вводить слово...',
                         hintStyle:
@@ -41,16 +45,19 @@ class SearchRhymesBottomSheet extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(width: 8),
-                Container(
-                  height: 48,
-                  width: 48,
-                  decoration: BoxDecoration(
-                    color: theme.primaryColor,
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: const Icon(
-                    Icons.search,
-                    color: Colors.white,
+                GestureDetector(
+                  onTap: () => _onTapSearch(context),
+                  child: Container(
+                    height: 48,
+                    width: 48,
+                    decoration: BoxDecoration(
+                      color: theme.primaryColor,
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: const Icon(
+                      Icons.search,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
               ],
@@ -70,5 +77,9 @@ class SearchRhymesBottomSheet extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  void _onTapSearch(BuildContext context) {
+    Navigator.of(context).pop(controller.text);
   }
 }

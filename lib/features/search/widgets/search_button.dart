@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 
 class SearchButtion extends StatelessWidget {
-  const SearchButtion({super.key, required this.onTap});
+  const SearchButtion({
+    super.key,
+    required this.onTap,
+    required this.controller,
+  });
 
   final VoidCallback onTap;
+  final TextEditingController controller;
 
   @override
   Widget build(BuildContext context) {
@@ -22,13 +27,18 @@ class SearchButtion extends StatelessWidget {
           children: [
             const Icon(Icons.search_rounded),
             const SizedBox(width: 12),
-            Text(
-              'Поиск рифм...',
-              style: TextStyle(
-                fontSize: 18,
-                color: theme.hintColor.withOpacity(0.5),
-                fontWeight: FontWeight.w500,
-              ),
+            AnimatedBuilder(
+              animation: controller,
+              builder: (context, _) {
+                return Text(
+                  controller.text.isEmpty ? 'Поиск рифм...' : controller.text,
+                  style: TextStyle(
+                    fontSize: 18,
+                    color: theme.hintColor.withOpacity(0.5),
+                    fontWeight: FontWeight.w500,
+                  ),
+                );
+              },
             ),
           ],
         ),
