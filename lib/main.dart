@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:realm/realm.dart';
 import 'package:rhymer/api/api.dart';
 import 'package:rhymer/features/favorites/bloc/bloc/favorite_rhymes_bloc.dart';
 import 'package:rhymer/features/history/bloc/history_rhymes_bloc.dart';
@@ -23,7 +24,9 @@ Future<void> main() async {
 }
 
 class RhymerApp extends StatefulWidget {
-  const RhymerApp({super.key});
+  const RhymerApp({super.key, required this.realm});
+
+  final Realm realm;
 
   @override
   State<RhymerApp> createState() => _RhymerAppState();
