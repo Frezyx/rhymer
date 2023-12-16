@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:rhymer/features/history/bloc/history_rhymes_bloc.dart';
 import 'package:rhymer/features/search/bloc/rhymes_list_bloc.dart';
 import 'package:rhymer/features/search/widgets/widgets.dart';
 import 'package:rhymer/ui/ui.dart';
@@ -38,18 +39,27 @@ class _SearchScreenState extends State<SearchScreen> {
         ),
         const SliverToBoxAdapter(child: SizedBox(height: 16)),
         SliverToBoxAdapter(
-          child: SizedBox(
-            height: 100,
-            child: ListView.separated(
-              padding: const EdgeInsets.only(left: 16),
-              scrollDirection: Axis.horizontal,
-              itemCount: 10,
-              separatorBuilder: (context, index) => const SizedBox(width: 16),
-              itemBuilder: (context, index) {
-                final rhymes = List.generate(4, (index) => 'Рифма $index');
-                return RhymeHistoryCard(rhymes: rhymes);
-              },
-            ),
+          child: BlocBuilder<HistoryRhymesBloc, HistoryRhymesState>(
+            builder: (context, state) {
+              if (state is! HistoryRhymesLoaded) return const SizedBox();
+              return SizedBox(
+                height: 100,
+                child: ListView.separated(
+                  padding: const EdgeInsets.only(left: 16),
+                  scrollDirection: Axis.horizontal,
+                  itemCount: state.rhymes.length,
+                  separatorBuilder: (context, index) =>
+                      const SizedBox(width: 16),
+                  itemBuilder: (context, index) {
+                    final rhymes = state.rhymes[index];
+                    return RhymeHistoryCard(
+                      rhymes: rhymes.words,
+                      word: rhymes.word,
+                    );
+                  },
+                ),
+              );
+            },
           ),
         ),
         const SliverToBoxAdapter(child: SizedBox(height: 16)),
