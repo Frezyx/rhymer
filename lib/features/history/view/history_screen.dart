@@ -45,7 +45,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                       maxCrossAxisExtent: 200,
                       mainAxisSpacing: 10.0,
                       crossAxisSpacing: 10.0,
-                      childAspectRatio: 1.6,
+                      childAspectRatio: 1.5,
                     ),
                     delegate: SliverChildBuilderDelegate(
                       (BuildContext context, int index) {
