@@ -10,8 +10,10 @@ import 'package:rhymer/features/search/bloc/rhymes_list_bloc.dart';
 import 'package:rhymer/repositories/favorites/favorites.dart';
 import 'package:rhymer/repositories/history/history_repository.dart';
 import 'package:rhymer/repositories/history/models/models.dart';
+import 'package:rhymer/repositories/settings/settings_repository.dart';
 import 'package:rhymer/router/router.dart';
 import 'package:rhymer/ui/ui.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,13 +23,24 @@ Future<void> main() async {
     FavoriteRhymes.schema,
   ]);
   final realm = Realm(config);
-  runApp(RhymerApp(realm: realm));
+  final prefs = await SharedPreferences.getInstance();
+  runApp(
+    RhymerApp(
+      realm: realm,
+      preferences: prefs,
+    ),
+  );
 }
 
 class RhymerApp extends StatefulWidget {
-  const RhymerApp({super.key, required this.realm});
+  const RhymerApp({
+    super.key,
+    required this.realm,
+    required this.preferences,
+  });
 
   final Realm realm;
+  final SharedPreferences preferences;
 
   @override
   State<RhymerApp> createState() => _RhymerAppState();
@@ -40,6 +53,9 @@ class _RhymerAppState extends State<RhymerApp> {
   Widget build(BuildContext context) {
     final historyRepository = HistoryRepository(realm: widget.realm);
     final favoritesRepository = FavoritesRepository(realm: widget.realm);
+    final settingsRepository = SettingsRepository(
+      preferences: widget.preferences,
+    );
 
     return MultiBlocProvider(
       providers: [
@@ -60,7 +76,11 @@ class _RhymerAppState extends State<RhymerApp> {
             favoritesRepository: favoritesRepository,
           ),
         ),
-        BlocProvider(create: (context) => ThemeCubit()),
+        BlocProvider(
+          create: (context) => ThemeCubit(
+            settingsRepository: settingsRepository,
+          ),
+        ),
       ],
       child: BlocBuilder<ThemeCubit, ThemeState>(
         builder: (context, state) {
