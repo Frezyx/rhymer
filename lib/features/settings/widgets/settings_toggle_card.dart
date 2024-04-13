@@ -31,10 +31,16 @@ class SettingsToggleCard extends StatelessWidget {
                 fontSize: 18,
               ),
             ),
-            CupertinoSwitch(
-              value: value,
-              onChanged: onChanged,
-            ),
+            if (theme.isAndroid)
+              Switch(
+                value: value,
+                onChanged: onChanged,
+              )
+            else
+              CupertinoSwitch(
+                value: value,
+                onChanged: onChanged,
+              )
           ],
         ),
       ),

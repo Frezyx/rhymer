@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 const _primaryColor = Color(0xFFF82B10);
@@ -37,3 +38,9 @@ const _textTheme = TextTheme(
     fontWeight: FontWeight.w600,
   ),
 );
+
+extension ThemePlatformExtension on ThemeData {
+  bool get isAndroid => defaultTargetPlatform == TargetPlatform.android;
+  Color get cupertinoAlertColor => const Color(0xFFF82B10);
+  Color get cupertinoActionColor => const Color(0xFF3478F7);
+}
