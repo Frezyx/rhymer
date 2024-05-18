@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +9,7 @@ import 'package:rhymer/features/favorites/bloc/bloc/favorite_rhymes_bloc.dart';
 import 'package:rhymer/features/history/bloc/history_rhymes_bloc.dart';
 import 'package:rhymer/features/search/bloc/rhymes_list_bloc.dart';
 import 'package:rhymer/features/search/widgets/widgets.dart';
+import 'package:rhymer/repositories/notifications/notifications.dart';
 import 'package:rhymer/ui/ui.dart';
 
 @RoutePage()
@@ -24,7 +26,16 @@ class _SearchScreenState extends State<SearchScreen> {
   @override
   void initState() {
     BlocProvider.of<HistoryRhymesBloc>(context).add(LoadHistoryRhymes());
+    _initNotifications();
     super.initState();
+  }
+
+  Future<void> _initNotifications() async {
+    final repository = context.read<NotificationsRepositoryI>();
+    final result = await repository.requestPermisison();
+    if (result) {
+      repository.getToken().then((token) => log(token ?? '...'));
+    }
   }
 
   @override

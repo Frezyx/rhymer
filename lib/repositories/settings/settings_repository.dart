@@ -1,7 +1,7 @@
 import 'package:rhymer/repositories/settings/settings.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class SettingsRepository implements SettingsRepositoryInterface {
+class SettingsRepository implements SettingsRepositoryI {
   SettingsRepository({
     required this.preferences,
   });

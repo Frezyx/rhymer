@@ -9,13 +9,13 @@ part 'theme_state.dart';
 
 class ThemeCubit extends Cubit<ThemeState> {
   ThemeCubit({
-    required SettingsRepositoryInterface settingsRepository,
+    required SettingsRepositoryI settingsRepository,
   })  : _settingsRepository = settingsRepository,
         super(const ThemeState(Brightness.light)) {
     _heckSelectedTheme();
   }
 
-  final SettingsRepositoryInterface _settingsRepository;
+  final SettingsRepositoryI _settingsRepository;
 
   Future<void> setThemeBrightness(Brightness brightness) async {
     try {

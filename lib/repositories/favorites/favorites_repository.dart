@@ -1,7 +1,7 @@
 import 'package:realm/realm.dart';
 import 'package:rhymer/repositories/favorites/favorites.dart';
 
-class FavoritesRepository implements FavoritesRepositoryInterface {
+class FavoritesRepository implements FavoritesRepositoryI {
   FavoritesRepository({
     required this.realm,
   });
