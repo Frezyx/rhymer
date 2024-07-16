@@ -29,6 +29,7 @@ class _RhymerAppState extends State<RhymerApp> {
           return MaterialApp.router(
             title: 'Rhymer',
             theme: state.isDark ? darkTheme : lightTheme,
+            debugShowCheckedModeBanner: false,
             routerConfig: _router.config(),
           );
         },
