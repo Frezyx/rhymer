@@ -25,7 +25,17 @@ class NotificationsRepository implements NotificationsRepositoryI {
   @override
   Future<bool> requestPermisison() async {
     final settings = await _firebaseMessaging.requestPermission();
-    return settings.authorizationStatus == AuthorizationStatus.authorized;
+    final isAuthorized =
+        settings.authorizationStatus == AuthorizationStatus.authorized;
+    if (isAuthorized) {
+      await FirebaseMessaging.instance
+          .setForegroundNotificationPresentationOptions(
+        alert: true,
+        badge: true,
+        sound: true,
+      );
+    }
+    return isAuthorized;
   }
 
   @override
@@ -41,7 +51,14 @@ class NotificationsRepository implements NotificationsRepositoryI {
       final notification = message.notification;
       final android = message.notification?.android;
 
-      if (notification != null && android != null) {}
+      if (notification != null && android != null) {
+        showLocalNotification(
+          Notification(
+            title: notification.title!,
+            message: notification.body!,
+          ),
+        );
+      }
     });
   }
 
