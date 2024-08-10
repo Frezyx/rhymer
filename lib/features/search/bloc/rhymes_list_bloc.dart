@@ -14,8 +14,8 @@ part 'rhymes_list_state.dart';
 class RhymesListBloc extends Bloc<RhymesListEvent, RhymesListState> {
   RhymesListBloc({
     required RhymerApiClient apiClient,
-    required HistoryRepositoryInterface historyRepository,
-    required FavoritesRepositoryInterface favoritesRepositoryInterface,
+    required HistoryRepositoryI historyRepository,
+    required FavoritesRepositoryI favoritesRepositoryInterface,
   })  : _historyRepository = historyRepository,
         _favoritesRepository = favoritesRepositoryInterface,
         _apiClient = apiClient,
@@ -25,8 +25,8 @@ class RhymesListBloc extends Bloc<RhymesListEvent, RhymesListState> {
   }
 
   final RhymerApiClient _apiClient;
-  final HistoryRepositoryInterface _historyRepository;
-  final FavoritesRepositoryInterface _favoritesRepository;
+  final HistoryRepositoryI _historyRepository;
+  final FavoritesRepositoryI _favoritesRepository;
 
   Future<void> _onSearch(
     SearchRhymes event,

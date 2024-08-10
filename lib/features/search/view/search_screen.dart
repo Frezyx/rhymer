@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +9,7 @@ import 'package:rhymer/features/favorites/bloc/bloc/favorite_rhymes_bloc.dart';
 import 'package:rhymer/features/history/bloc/history_rhymes_bloc.dart';
 import 'package:rhymer/features/search/bloc/rhymes_list_bloc.dart';
 import 'package:rhymer/features/search/widgets/widgets.dart';
+import 'package:rhymer/repositories/notifications/notifications.dart';
 import 'package:rhymer/ui/ui.dart';
 
 @RoutePage()
@@ -24,27 +26,84 @@ class _SearchScreenState extends State<SearchScreen> {
   @override
   void initState() {
     BlocProvider.of<HistoryRhymesBloc>(context).add(LoadHistoryRhymes());
+    _initNotifications();
     super.initState();
+  }
+
+  Future<void> _initNotifications() async {
+    final repository = context.read<NotificationsRepositoryI>();
+    final result = await repository.requestPermisison();
+    if (result) {
+      repository.getToken().then((token) => log(token ?? '...'));
+    }
   }
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return CustomScrollView(
       slivers: [
         SliverAppBar(
           pinned: true,
           snap: true,
           floating: true,
-          centerTitle: true,
           title: const Text('Rhymer'),
           elevation: 0,
           surfaceTintColor: Colors.transparent,
           bottom: PreferredSize(
             preferredSize: const Size.fromHeight(70),
-            child: SearchButtion(
-              controller: _searchController,
-              onTap: () => _showSearchBottomSheet(context),
+            child: Padding(
+              padding: const EdgeInsets.all(20),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: theme.hintColor.withOpacity(0.1),
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: TextField(
+                        controller: _searchController,
+                        decoration: InputDecoration(
+                          hintText: 'Начни вводить слово...',
+                          hintStyle: TextStyle(
+                              color: theme.hintColor.withOpacity(0.5)),
+                          contentPadding: const EdgeInsets.symmetric(
+                            horizontal: 12,
+                          ),
+                          enabledBorder: const OutlineInputBorder(
+                            borderSide: BorderSide.none,
+                          ),
+                          border: const OutlineInputBorder(
+                            borderSide: BorderSide.none,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 8),
+                  GestureDetector(
+                    onTap: () => _onTapSearch(context),
+                    child: Container(
+                      height: 48,
+                      width: 48,
+                      decoration: BoxDecoration(
+                        color: theme.primaryColor,
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: const Icon(
+                        Icons.search,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
+            // SearchButtion(
+            //   controller: _searchController,
+            //   onTap: () => _showSearchBottomSheet(context),
+            // ),
           ),
         ),
         const SliverToBoxAdapter(child: SizedBox(height: 16)),
@@ -108,6 +167,14 @@ class _SearchScreenState extends State<SearchScreen> {
     );
   }
 
+  void _onTapSearch(BuildContext context) {
+    final bloc = BlocProvider.of<RhymesListBloc>(context);
+    final query = _searchController.text;
+    if (query.isNotEmpty) {
+      bloc.add(SearchRhymes(query: query));
+    }
+  }
+
   Future<void> _toggleFavorite(
     BuildContext context,
     Rhymes rhymesModel,
@@ -139,22 +206,23 @@ class _SearchScreenState extends State<SearchScreen> {
     }
   }
 
-  Future<void> _showSearchBottomSheet(BuildContext context) async {
-    final bloc = BlocProvider.of<RhymesListBloc>(context);
-    final query = await showModalBottomSheet<String>(
-      isScrollControlled: true,
-      backgroundColor: Colors.transparent,
-      elevation: 0,
-      context: context,
-      builder: (context) => Padding(
-        padding: const EdgeInsets.only(top: 60),
-        child: SearchRhymesBottomSheet(
-          controller: _searchController,
-        ),
-      ),
-    );
-    if (query?.isNotEmpty ?? false) {
-      bloc.add(SearchRhymes(query: query!));
-    }
-  }
+  // Future<void> _showSearchBottomSheet(BuildContext context) async {
+  //   final bloc = BlocProvider.of<RhymesListBloc>(context);
+
+  //   final query = await showModalBottomSheet<String>(
+  //     isScrollControlled: true,
+  //     backgroundColor: Colors.transparent,
+  //     elevation: 0,
+  //     context: context,
+  //     builder: (context) => Padding(
+  //       padding: const EdgeInsets.only(top: 60),
+  //       child: SearchRhymesBottomSheet(
+  //         controller: _searchController,
+  //       ),
+  //     ),
+  //   );
+  //   if (query?.isNotEmpty ?? false) {
+  //     bloc.add(SearchRhymes(query: query!));
+  //   }
+  // }
 }

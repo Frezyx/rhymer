@@ -1,7 +1,7 @@
 import 'package:realm/realm.dart';
 import 'package:rhymer/repositories/history/history.dart';
 
-class HistoryRepository implements HistoryRepositoryInterface {
+class HistoryRepository implements HistoryRepositoryI {
   HistoryRepository({
     required this.realm,
   });

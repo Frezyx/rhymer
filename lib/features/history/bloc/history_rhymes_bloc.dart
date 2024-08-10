@@ -9,14 +9,14 @@ part 'history_rhymes_state.dart';
 
 class HistoryRhymesBloc extends Bloc<HistoryRhymesEvent, HistoryRhymesState> {
   HistoryRhymesBloc({
-    required HistoryRepositoryInterface historyRepository,
+    required HistoryRepositoryI historyRepository,
   })  : _historyRepository = historyRepository,
         super(HistoryRhymesInitial()) {
     on<LoadHistoryRhymes>(_load);
     on<ClearRhymesHistory>(_clear);
   }
 
-  final HistoryRepositoryInterface _historyRepository;
+  final HistoryRepositoryI _historyRepository;
 
   Future<void> _load(
     LoadHistoryRhymes event,

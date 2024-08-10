@@ -10,14 +10,14 @@ part 'favorite_rhymes_state.dart';
 class FavoriteRhymesBloc
     extends Bloc<FavoriteRhymesEvent, FavoriteRhymesState> {
   FavoriteRhymesBloc({
-    required FavoritesRepositoryInterface favoritesRepository,
+    required FavoritesRepositoryI favoritesRepository,
   })  : _favoritesRepository = favoritesRepository,
         super(FavoriteRhymesInitial()) {
     on<LoadFavoriteRhymes>(_load);
     on<ToggleFavoriteRhyme>(_toggleFavorite);
   }
 
-  final FavoritesRepositoryInterface _favoritesRepository;
+  final FavoritesRepositoryI _favoritesRepository;
 
   Future<void> _load(
     LoadFavoriteRhymes event,
