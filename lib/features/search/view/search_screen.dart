@@ -44,14 +44,16 @@ class _SearchScreenState extends State<SearchScreen> {
     return CustomScrollView(
       slivers: [
         SliverAppBar(
+          backgroundColor: theme.cardColor,
           pinned: true,
           snap: true,
           floating: true,
           title: const Text('Rhymer'),
           elevation: 0,
+          toolbarHeight: 30,
           surfaceTintColor: Colors.transparent,
           bottom: PreferredSize(
-            preferredSize: const Size.fromHeight(70),
+            preferredSize: const Size.fromHeight(88),
             child: Padding(
               padding: const EdgeInsets.all(20),
               child: Row(
@@ -110,18 +112,22 @@ class _SearchScreenState extends State<SearchScreen> {
         SliverToBoxAdapter(
           child: BlocBuilder<HistoryRhymesBloc, HistoryRhymesState>(
             builder: (context, state) {
-              if (state is! HistoryRhymesLoaded) return const SizedBox();
+              if (state is! HistoryRhymesLoaded || state.rhymes.isEmpty) {
+                return const SizedBox();
+              }
+              final history = state.rhymes.reversed.toList();
               return SizedBox(
-                height: 100,
+                height: 58,
                 child: ListView.separated(
                   padding: const EdgeInsets.only(left: 16),
                   scrollDirection: Axis.horizontal,
-                  itemCount: state.rhymes.length,
-                  separatorBuilder: (context, index) =>
-                      const SizedBox(width: 16),
+                  itemCount: history.length,
+                  separatorBuilder: (context, index) => const SizedBox(
+                    width: 8,
+                  ),
                   itemBuilder: (context, index) {
-                    final rhymes = state.rhymes[index];
-                    return RhymeHistoryCard(
+                    final rhymes = history[index];
+                    return RhymeHistoryCarouselCard(
                       rhymes: rhymes.words,
                       word: rhymes.word,
                     );

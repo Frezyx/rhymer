@@ -25,6 +25,7 @@ final lightTheme = ThemeData(
   colorScheme: ColorScheme.fromSeed(
     seedColor: _primaryColor,
     brightness: Brightness.light,
+    surface: Colors.white,
   ),
 );
 

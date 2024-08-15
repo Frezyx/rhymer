@@ -2,7 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rhymer/features/history/bloc/history_rhymes_bloc.dart';
-import 'package:rhymer/ui/ui.dart';
+import 'package:rhymer/features/history/widgets/widgets.dart';
 
 @RoutePage()
 class HistoryScreen extends StatefulWidget {
@@ -45,7 +45,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                       maxCrossAxisExtent: 200,
                       mainAxisSpacing: 10.0,
                       crossAxisSpacing: 10.0,
-                      childAspectRatio: 1.5,
+                      childAspectRatio: 2,
                     ),
                     delegate: SliverChildBuilderDelegate(
                       (BuildContext context, int index) {
