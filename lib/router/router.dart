@@ -8,7 +8,7 @@ import 'package:rhymer/features/settings/settings.dart';
 part 'router.gr.dart';
 
 @AutoRouterConfig()
-class AppRouter extends _$AppRouter {
+class AppRouter extends RootStackRouter {
   @override
   List<AutoRoute> get routes => [
         AutoRoute(

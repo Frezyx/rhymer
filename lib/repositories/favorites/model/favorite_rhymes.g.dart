@@ -69,7 +69,7 @@ class FavoriteRhymes extends _FavoriteRhymes
   static SchemaObject? _schema;
   static SchemaObject _initSchema() {
     RealmObjectBase.registerFactory(FavoriteRhymes._);
-    return const SchemaObject(
+    return SchemaObject(
         ObjectType.realmObject, FavoriteRhymes, 'FavoriteRhymes', [
       SchemaProperty('id', RealmPropertyType.string, primaryKey: true),
       SchemaProperty('queryWord', RealmPropertyType.string),

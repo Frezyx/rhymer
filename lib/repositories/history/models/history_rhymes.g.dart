@@ -6,6 +6,7 @@ part of 'history_rhymes.dart';
 // RealmObjectGenerator
 // **************************************************************************
 
+// ignore_for_file: type=lint
 class HistoryRhymes extends _HistoryRhymes
     with RealmEntity, RealmObjectBase, RealmObject {
   HistoryRhymes(
@@ -49,7 +50,7 @@ class HistoryRhymes extends _HistoryRhymes
   static SchemaObject? _schema;
   static SchemaObject _initSchema() {
     RealmObjectBase.registerFactory(HistoryRhymes._);
-    return const SchemaObject(
+    return SchemaObject(
         ObjectType.realmObject, HistoryRhymes, 'HistoryRhymes', [
       SchemaProperty('id', RealmPropertyType.string, primaryKey: true),
       SchemaProperty('word', RealmPropertyType.string),

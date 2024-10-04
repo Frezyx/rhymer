@@ -34,20 +34,20 @@ class SettingsScreen extends StatelessWidget {
               onChanged: (value) => _setThemeBrightness(context, value),
             ),
           ),
-          SliverToBoxAdapter(
-            child: SettingsToggleCard(
-              title: 'Уведомления',
-              value: false,
-              onChanged: (value) {},
-            ),
-          ),
-          SliverToBoxAdapter(
-            child: SettingsToggleCard(
-              title: 'Разрешить аналитику',
-              value: true,
-              onChanged: (value) {},
-            ),
-          ),
+          // SliverToBoxAdapter(
+          //   child: SettingsToggleCard(
+          //     title: 'Уведомления',
+          //     value: false,
+          //     onChanged: (value) {},
+          //   ),
+          // ),
+          // SliverToBoxAdapter(
+          //   child: SettingsToggleCard(
+          //     title: 'Разрешить аналитику',
+          //     value: true,
+          //     onChanged: (value) {},
+          //   ),
+          // ),
           const SliverToBoxAdapter(child: SizedBox(height: 16)),
           SliverToBoxAdapter(
             child: SettingsActionCard(
@@ -94,7 +94,7 @@ class SettingsScreen extends StatelessWidget {
     final theme = Theme.of(context);
     final dialog = ConfirmationDialog(
       title: 'Вы уверены?',
-      description: 'При согласии история будет удалена навсегда',
+      description: 'Ваши данные будут безвозвратно удалены',
       onConfirm: () => _clearHistory(context),
     );
     if (theme.isAndroid) {
