@@ -47,6 +47,7 @@ class RhymesListBloc extends Bloc<RhymesListEvent, RhymesListState> {
       );
     } catch (e) {
       emit(RhymesListFailure(e));
+      log(e.toString());
     }
   }
 

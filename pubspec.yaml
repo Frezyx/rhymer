@@ -34,6 +34,7 @@ dependencies:
   talker: 4.4.1
   talker_flutter: 4.4.1
   talker_dio_logger: 4.4.1
+  talker_bloc_logger: 4.4.1
 
 dev_dependencies:
   flutter_test:

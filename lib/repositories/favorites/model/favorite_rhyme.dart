@@ -27,11 +27,13 @@ class FavoriteRhyme extends Equatable {
       );
 
   factory FavoriteRhyme.fromTable(FavoriteRhymeTableData data) {
+    final decoded = List<String>.from(jsonDecode(data.words));
+    final words = data.words.isEmpty ? <String>[] : decoded;
     return FavoriteRhyme(
       id: data.id,
       queryWord: data.queryWord,
       favoriteWord: data.favoriteWord,
-      words: jsonDecode(data.words) as List<String>,
+      words: words,
       createdAt: data.createdAt,
     );
   }
