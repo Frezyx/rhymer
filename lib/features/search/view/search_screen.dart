@@ -121,7 +121,7 @@ class _SearchScreenState extends State<SearchScreen> {
                 if (state is! HistoryRhymesLoaded || state.rhymes.isEmpty) {
                   return const SizedBox();
                 }
-                final history = state.rhymes.reversed.toList();
+                final history = state.rhymes;
                 return SizedBox(
                   height: 58,
                   child: ListView.separated(
