@@ -4,7 +4,6 @@
 
 list(APPEND FLUTTER_PLUGIN_LIST
   firebase_core
-  realm
   share_plus
   sqlite3_flutter_libs
   url_launcher_windows
