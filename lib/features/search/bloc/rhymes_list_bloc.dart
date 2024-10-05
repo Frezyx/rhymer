@@ -60,9 +60,12 @@ class RhymesListBloc extends Bloc<RhymesListEvent, RhymesListState> {
         log('state is not RhymesListLoaded');
         return;
       }
-      await _favoritesRepository.createOrDeleteRhymes(
-        event.rhymes.toFavorite(event.query, event.favoriteWord),
+      final createFavoriteRhyme = CreateFavoriteRhyme.create(
+        queryWord: event.query,
+        favoriteWord: event.favoriteWord,
+        words: event.rhymes.words,
       );
+      await _favoritesRepository.createRhyme(createFavoriteRhyme);
       final favoriteRhymes = await _favoritesRepository.getRhymesList();
       emit(prevState.copyWith(favoriteRhymes: favoriteRhymes));
     } catch (e) {

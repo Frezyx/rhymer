@@ -15,12 +15,12 @@ final class RhymesListLoaded extends RhymesListState {
   const RhymesListLoaded({
     required this.rhymes,
     required this.query,
-    required List<FavoriteRhymes> favoriteRhymes,
+    required List<FavoriteRhyme> favoriteRhymes,
   }) : _favoriteRhymes = favoriteRhymes;
 
   final String query;
   final Rhymes rhymes;
-  final List<FavoriteRhymes> _favoriteRhymes;
+  final List<FavoriteRhyme> _favoriteRhymes;
 
   bool isFavorite(String rhyme) {
     return _favoriteRhymes
@@ -35,7 +35,7 @@ final class RhymesListLoaded extends RhymesListState {
   RhymesListLoaded copyWith({
     String? query,
     Rhymes? rhymes,
-    List<FavoriteRhymes>? favoriteRhymes,
+    List<FavoriteRhyme>? favoriteRhymes,
   }) {
     return RhymesListLoaded(
       query: query ?? this.query,

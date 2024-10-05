@@ -6,8 +6,8 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:realm/realm.dart';
 import 'package:rhymer/app/app.dart';
 import 'package:rhymer/firebase_options.dart';
-import 'package:rhymer/repositories/favorites/favorites.dart';
 import 'package:rhymer/repositories/history/models/models.dart';
+import 'package:rhymer/utils/database/drift.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 Future<void> main() async {
@@ -18,9 +18,11 @@ Future<void> main() async {
 
   final realm = _initRealm();
   final prefs = await _initPrefs();
+  final database = AppDatabase();
 
   final config = AppConfig(
     realm: realm,
+    database: database,
     preferences: prefs,
     localNotificationsPlugin: FlutterLocalNotificationsPlugin(),
     firebaseMessaging: FirebaseMessaging.instance,
@@ -34,10 +36,7 @@ Future<SharedPreferences> _initPrefs() async {
 }
 
 Realm _initRealm() {
-  final realmConfig = Configuration.local([
-    HistoryRhymes.schema,
-    FavoriteRhymes.schema,
-  ]);
+  final realmConfig = Configuration.local([HistoryRhymes.schema]);
   final realm = Realm(realmConfig);
   return realm;
 }

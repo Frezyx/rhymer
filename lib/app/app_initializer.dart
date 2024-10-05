@@ -34,7 +34,7 @@ class AppInitializer extends StatelessWidget {
         ),
         RepositoryProvider<FavoritesRepositoryI>(
           create: (context) => FavoritesRepository(
-            realm: config.realm,
+            db: config.database,
           ),
         ),
         RepositoryProvider<SettingsRepositoryI>(

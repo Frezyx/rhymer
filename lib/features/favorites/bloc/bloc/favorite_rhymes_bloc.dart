@@ -37,7 +37,7 @@ class FavoriteRhymesBloc
     Emitter<FavoriteRhymesState> emit,
   ) async {
     try {
-      _favoritesRepository.createOrDeleteRhymes(event.favoriteRhyme);
+      _favoritesRepository.createOrDeleteRhyme(event.rhyme.toCreate());
       add(LoadFavoriteRhymes());
     } catch (e) {
       log(e.toString());

@@ -1,7 +1,8 @@
-import 'package:rhymer/repositories/favorites/model/favorite_rhymes.dart';
+import 'package:rhymer/repositories/favorites/favorites.dart';
 
 abstract interface class FavoritesRepositoryI {
-  Future<List<FavoriteRhymes>> getRhymesList();
-  Future<void> createOrDeleteRhymes(FavoriteRhymes rhymes);
+  Future<List<FavoriteRhyme>> getRhymesList();
+  Future<void> createRhyme(CreateFavoriteRhyme rhymes);
+  Future<void> createOrDeleteRhyme(CreateFavoriteRhyme rhymes);
   Future<void> clear();
 }

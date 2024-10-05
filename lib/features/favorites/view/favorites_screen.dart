@@ -2,7 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rhymer/features/favorites/bloc/bloc/favorite_rhymes_bloc.dart';
-import 'package:rhymer/repositories/favorites/model/favorite_rhymes.dart';
+import 'package:rhymer/repositories/favorites/favorites.dart';
 import 'package:rhymer/ui/ui.dart';
 
 @RoutePage()
@@ -46,9 +46,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                       isFavorite: true,
                       rhyme: rhyme.favoriteWord,
                       sourceWord: rhyme.queryWord,
-                      onTap: () {
-                        _toggleFavoriteRhyme(context, rhyme);
-                      },
+                      onTap: () => _toggleFavoriteRhyme(context, rhyme),
                     );
                   },
                 );
@@ -63,8 +61,9 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
     );
   }
 
-  void _toggleFavoriteRhyme(BuildContext context, FavoriteRhymes rhyme) {
-    BlocProvider.of<FavoriteRhymesBloc>(context)
-        .add(ToggleFavoriteRhyme(rhyme));
+  void _toggleFavoriteRhyme(BuildContext context, FavoriteRhyme rhyme) {
+    BlocProvider.of<FavoriteRhymesBloc>(context).add(
+      ToggleFavoriteRhyme(rhyme),
+    );
   }
 }
