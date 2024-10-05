@@ -3,12 +3,12 @@
 part of 'drift.dart';
 
 // ignore_for_file: type=lint
-class $FavoriteRhymeTableTable extends FavoriteRhymeTable
-    with TableInfo<$FavoriteRhymeTableTable, FavoriteRhymeTableData> {
+class $FavoriteRhymeModelTable extends FavoriteRhymeModel
+    with TableInfo<$FavoriteRhymeModelTable, FavoriteRhymeModelData> {
   @override
   final GeneratedDatabase attachedDatabase;
   final String? _alias;
-  $FavoriteRhymeTableTable(this.attachedDatabase, [this._alias]);
+  $FavoriteRhymeModelTable(this.attachedDatabase, [this._alias]);
   static const VerificationMeta _idMeta = const VerificationMeta('id');
   @override
   late final GeneratedColumn<int> id = GeneratedColumn<int>(
@@ -48,10 +48,10 @@ class $FavoriteRhymeTableTable extends FavoriteRhymeTable
   String get aliasedName => _alias ?? actualTableName;
   @override
   String get actualTableName => $name;
-  static const String $name = 'favorite_rhyme_table';
+  static const String $name = 'favorite_rhyme_model';
   @override
   VerificationContext validateIntegrity(
-      Insertable<FavoriteRhymeTableData> instance,
+      Insertable<FavoriteRhymeModelData> instance,
       {bool isInserting = false}) {
     final context = VerificationContext();
     final data = instance.toColumns(true);
@@ -90,9 +90,9 @@ class $FavoriteRhymeTableTable extends FavoriteRhymeTable
   @override
   Set<GeneratedColumn> get $primaryKey => {id};
   @override
-  FavoriteRhymeTableData map(Map<String, dynamic> data, {String? tablePrefix}) {
+  FavoriteRhymeModelData map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
-    return FavoriteRhymeTableData(
+    return FavoriteRhymeModelData(
       id: attachedDatabase.typeMapping
           .read(DriftSqlType.int, data['${effectivePrefix}id'])!,
       queryWord: attachedDatabase.typeMapping
@@ -107,19 +107,19 @@ class $FavoriteRhymeTableTable extends FavoriteRhymeTable
   }
 
   @override
-  $FavoriteRhymeTableTable createAlias(String alias) {
-    return $FavoriteRhymeTableTable(attachedDatabase, alias);
+  $FavoriteRhymeModelTable createAlias(String alias) {
+    return $FavoriteRhymeModelTable(attachedDatabase, alias);
   }
 }
 
-class FavoriteRhymeTableData extends DataClass
-    implements Insertable<FavoriteRhymeTableData> {
+class FavoriteRhymeModelData extends DataClass
+    implements Insertable<FavoriteRhymeModelData> {
   final int id;
   final String queryWord;
   final String favoriteWord;
   final String words;
   final DateTime createdAt;
-  const FavoriteRhymeTableData(
+  const FavoriteRhymeModelData(
       {required this.id,
       required this.queryWord,
       required this.favoriteWord,
@@ -136,8 +136,8 @@ class FavoriteRhymeTableData extends DataClass
     return map;
   }
 
-  FavoriteRhymeTableCompanion toCompanion(bool nullToAbsent) {
-    return FavoriteRhymeTableCompanion(
+  FavoriteRhymeModelCompanion toCompanion(bool nullToAbsent) {
+    return FavoriteRhymeModelCompanion(
       id: Value(id),
       queryWord: Value(queryWord),
       favoriteWord: Value(favoriteWord),
@@ -146,10 +146,10 @@ class FavoriteRhymeTableData extends DataClass
     );
   }
 
-  factory FavoriteRhymeTableData.fromJson(Map<String, dynamic> json,
+  factory FavoriteRhymeModelData.fromJson(Map<String, dynamic> json,
       {ValueSerializer? serializer}) {
     serializer ??= driftRuntimeOptions.defaultSerializer;
-    return FavoriteRhymeTableData(
+    return FavoriteRhymeModelData(
       id: serializer.fromJson<int>(json['id']),
       queryWord: serializer.fromJson<String>(json['queryWord']),
       favoriteWord: serializer.fromJson<String>(json['favoriteWord']),
@@ -169,21 +169,21 @@ class FavoriteRhymeTableData extends DataClass
     };
   }
 
-  FavoriteRhymeTableData copyWith(
+  FavoriteRhymeModelData copyWith(
           {int? id,
           String? queryWord,
           String? favoriteWord,
           String? words,
           DateTime? createdAt}) =>
-      FavoriteRhymeTableData(
+      FavoriteRhymeModelData(
         id: id ?? this.id,
         queryWord: queryWord ?? this.queryWord,
         favoriteWord: favoriteWord ?? this.favoriteWord,
         words: words ?? this.words,
         createdAt: createdAt ?? this.createdAt,
       );
-  FavoriteRhymeTableData copyWithCompanion(FavoriteRhymeTableCompanion data) {
-    return FavoriteRhymeTableData(
+  FavoriteRhymeModelData copyWithCompanion(FavoriteRhymeModelCompanion data) {
+    return FavoriteRhymeModelData(
       id: data.id.present ? data.id.value : this.id,
       queryWord: data.queryWord.present ? data.queryWord.value : this.queryWord,
       favoriteWord: data.favoriteWord.present
@@ -196,7 +196,7 @@ class FavoriteRhymeTableData extends DataClass
 
   @override
   String toString() {
-    return (StringBuffer('FavoriteRhymeTableData(')
+    return (StringBuffer('FavoriteRhymeModelData(')
           ..write('id: $id, ')
           ..write('queryWord: $queryWord, ')
           ..write('favoriteWord: $favoriteWord, ')
@@ -212,7 +212,7 @@ class FavoriteRhymeTableData extends DataClass
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      (other is FavoriteRhymeTableData &&
+      (other is FavoriteRhymeModelData &&
           other.id == this.id &&
           other.queryWord == this.queryWord &&
           other.favoriteWord == this.favoriteWord &&
@@ -220,21 +220,21 @@ class FavoriteRhymeTableData extends DataClass
           other.createdAt == this.createdAt);
 }
 
-class FavoriteRhymeTableCompanion
-    extends UpdateCompanion<FavoriteRhymeTableData> {
+class FavoriteRhymeModelCompanion
+    extends UpdateCompanion<FavoriteRhymeModelData> {
   final Value<int> id;
   final Value<String> queryWord;
   final Value<String> favoriteWord;
   final Value<String> words;
   final Value<DateTime> createdAt;
-  const FavoriteRhymeTableCompanion({
+  const FavoriteRhymeModelCompanion({
     this.id = const Value.absent(),
     this.queryWord = const Value.absent(),
     this.favoriteWord = const Value.absent(),
     this.words = const Value.absent(),
     this.createdAt = const Value.absent(),
   });
-  FavoriteRhymeTableCompanion.insert({
+  FavoriteRhymeModelCompanion.insert({
     this.id = const Value.absent(),
     required String queryWord,
     required String favoriteWord,
@@ -244,7 +244,7 @@ class FavoriteRhymeTableCompanion
         favoriteWord = Value(favoriteWord),
         words = Value(words),
         createdAt = Value(createdAt);
-  static Insertable<FavoriteRhymeTableData> custom({
+  static Insertable<FavoriteRhymeModelData> custom({
     Expression<int>? id,
     Expression<String>? queryWord,
     Expression<String>? favoriteWord,
@@ -260,13 +260,13 @@ class FavoriteRhymeTableCompanion
     });
   }
 
-  FavoriteRhymeTableCompanion copyWith(
+  FavoriteRhymeModelCompanion copyWith(
       {Value<int>? id,
       Value<String>? queryWord,
       Value<String>? favoriteWord,
       Value<String>? words,
       Value<DateTime>? createdAt}) {
-    return FavoriteRhymeTableCompanion(
+    return FavoriteRhymeModelCompanion(
       id: id ?? this.id,
       queryWord: queryWord ?? this.queryWord,
       favoriteWord: favoriteWord ?? this.favoriteWord,
@@ -298,7 +298,7 @@ class FavoriteRhymeTableCompanion
 
   @override
   String toString() {
-    return (StringBuffer('FavoriteRhymeTableCompanion(')
+    return (StringBuffer('FavoriteRhymeModelCompanion(')
           ..write('id: $id, ')
           ..write('queryWord: $queryWord, ')
           ..write('favoriteWord: $favoriteWord, ')
@@ -312,25 +312,25 @@ class FavoriteRhymeTableCompanion
 abstract class _$AppDatabase extends GeneratedDatabase {
   _$AppDatabase(QueryExecutor e) : super(e);
   $AppDatabaseManager get managers => $AppDatabaseManager(this);
-  late final $FavoriteRhymeTableTable favoriteRhymeTable =
-      $FavoriteRhymeTableTable(this);
+  late final $FavoriteRhymeModelTable favoriteRhymeModel =
+      $FavoriteRhymeModelTable(this);
   @override
   Iterable<TableInfo<Table, Object?>> get allTables =>
       allSchemaEntities.whereType<TableInfo<Table, Object?>>();
   @override
-  List<DatabaseSchemaEntity> get allSchemaEntities => [favoriteRhymeTable];
+  List<DatabaseSchemaEntity> get allSchemaEntities => [favoriteRhymeModel];
 }
 
-typedef $$FavoriteRhymeTableTableCreateCompanionBuilder
-    = FavoriteRhymeTableCompanion Function({
+typedef $$FavoriteRhymeModelTableCreateCompanionBuilder
+    = FavoriteRhymeModelCompanion Function({
   Value<int> id,
   required String queryWord,
   required String favoriteWord,
   required String words,
   required DateTime createdAt,
 });
-typedef $$FavoriteRhymeTableTableUpdateCompanionBuilder
-    = FavoriteRhymeTableCompanion Function({
+typedef $$FavoriteRhymeModelTableUpdateCompanionBuilder
+    = FavoriteRhymeModelCompanion Function({
   Value<int> id,
   Value<String> queryWord,
   Value<String> favoriteWord,
@@ -338,9 +338,9 @@ typedef $$FavoriteRhymeTableTableUpdateCompanionBuilder
   Value<DateTime> createdAt,
 });
 
-class $$FavoriteRhymeTableTableFilterComposer
-    extends FilterComposer<_$AppDatabase, $FavoriteRhymeTableTable> {
-  $$FavoriteRhymeTableTableFilterComposer(super.$state);
+class $$FavoriteRhymeModelTableFilterComposer
+    extends FilterComposer<_$AppDatabase, $FavoriteRhymeModelTable> {
+  $$FavoriteRhymeModelTableFilterComposer(super.$state);
   ColumnFilters<int> get id => $state.composableBuilder(
       column: $state.table.id,
       builder: (column, joinBuilders) =>
@@ -367,9 +367,9 @@ class $$FavoriteRhymeTableTableFilterComposer
           ColumnFilters(column, joinBuilders: joinBuilders));
 }
 
-class $$FavoriteRhymeTableTableOrderingComposer
-    extends OrderingComposer<_$AppDatabase, $FavoriteRhymeTableTable> {
-  $$FavoriteRhymeTableTableOrderingComposer(super.$state);
+class $$FavoriteRhymeModelTableOrderingComposer
+    extends OrderingComposer<_$AppDatabase, $FavoriteRhymeModelTable> {
+  $$FavoriteRhymeModelTableOrderingComposer(super.$state);
   ColumnOrderings<int> get id => $state.composableBuilder(
       column: $state.table.id,
       builder: (column, joinBuilders) =>
@@ -396,29 +396,29 @@ class $$FavoriteRhymeTableTableOrderingComposer
           ColumnOrderings(column, joinBuilders: joinBuilders));
 }
 
-class $$FavoriteRhymeTableTableTableManager extends RootTableManager<
+class $$FavoriteRhymeModelTableTableManager extends RootTableManager<
     _$AppDatabase,
-    $FavoriteRhymeTableTable,
-    FavoriteRhymeTableData,
-    $$FavoriteRhymeTableTableFilterComposer,
-    $$FavoriteRhymeTableTableOrderingComposer,
-    $$FavoriteRhymeTableTableCreateCompanionBuilder,
-    $$FavoriteRhymeTableTableUpdateCompanionBuilder,
+    $FavoriteRhymeModelTable,
+    FavoriteRhymeModelData,
+    $$FavoriteRhymeModelTableFilterComposer,
+    $$FavoriteRhymeModelTableOrderingComposer,
+    $$FavoriteRhymeModelTableCreateCompanionBuilder,
+    $$FavoriteRhymeModelTableUpdateCompanionBuilder,
     (
-      FavoriteRhymeTableData,
-      BaseReferences<_$AppDatabase, $FavoriteRhymeTableTable,
-          FavoriteRhymeTableData>
+      FavoriteRhymeModelData,
+      BaseReferences<_$AppDatabase, $FavoriteRhymeModelTable,
+          FavoriteRhymeModelData>
     ),
-    FavoriteRhymeTableData,
+    FavoriteRhymeModelData,
     PrefetchHooks Function()> {
-  $$FavoriteRhymeTableTableTableManager(
-      _$AppDatabase db, $FavoriteRhymeTableTable table)
+  $$FavoriteRhymeModelTableTableManager(
+      _$AppDatabase db, $FavoriteRhymeModelTable table)
       : super(TableManagerState(
           db: db,
           table: table,
           filteringComposer:
-              $$FavoriteRhymeTableTableFilterComposer(ComposerState(db, table)),
-          orderingComposer: $$FavoriteRhymeTableTableOrderingComposer(
+              $$FavoriteRhymeModelTableFilterComposer(ComposerState(db, table)),
+          orderingComposer: $$FavoriteRhymeModelTableOrderingComposer(
               ComposerState(db, table)),
           updateCompanionCallback: ({
             Value<int> id = const Value.absent(),
@@ -427,7 +427,7 @@ class $$FavoriteRhymeTableTableTableManager extends RootTableManager<
             Value<String> words = const Value.absent(),
             Value<DateTime> createdAt = const Value.absent(),
           }) =>
-              FavoriteRhymeTableCompanion(
+              FavoriteRhymeModelCompanion(
             id: id,
             queryWord: queryWord,
             favoriteWord: favoriteWord,
@@ -441,7 +441,7 @@ class $$FavoriteRhymeTableTableTableManager extends RootTableManager<
             required String words,
             required DateTime createdAt,
           }) =>
-              FavoriteRhymeTableCompanion.insert(
+              FavoriteRhymeModelCompanion.insert(
             id: id,
             queryWord: queryWord,
             favoriteWord: favoriteWord,
@@ -455,25 +455,25 @@ class $$FavoriteRhymeTableTableTableManager extends RootTableManager<
         ));
 }
 
-typedef $$FavoriteRhymeTableTableProcessedTableManager = ProcessedTableManager<
+typedef $$FavoriteRhymeModelTableProcessedTableManager = ProcessedTableManager<
     _$AppDatabase,
-    $FavoriteRhymeTableTable,
-    FavoriteRhymeTableData,
-    $$FavoriteRhymeTableTableFilterComposer,
-    $$FavoriteRhymeTableTableOrderingComposer,
-    $$FavoriteRhymeTableTableCreateCompanionBuilder,
-    $$FavoriteRhymeTableTableUpdateCompanionBuilder,
+    $FavoriteRhymeModelTable,
+    FavoriteRhymeModelData,
+    $$FavoriteRhymeModelTableFilterComposer,
+    $$FavoriteRhymeModelTableOrderingComposer,
+    $$FavoriteRhymeModelTableCreateCompanionBuilder,
+    $$FavoriteRhymeModelTableUpdateCompanionBuilder,
     (
-      FavoriteRhymeTableData,
-      BaseReferences<_$AppDatabase, $FavoriteRhymeTableTable,
-          FavoriteRhymeTableData>
+      FavoriteRhymeModelData,
+      BaseReferences<_$AppDatabase, $FavoriteRhymeModelTable,
+          FavoriteRhymeModelData>
     ),
-    FavoriteRhymeTableData,
+    FavoriteRhymeModelData,
     PrefetchHooks Function()>;
 
 class $AppDatabaseManager {
   final _$AppDatabase _db;
   $AppDatabaseManager(this._db);
-  $$FavoriteRhymeTableTableTableManager get favoriteRhymeTable =>
-      $$FavoriteRhymeTableTableTableManager(_db, _db.favoriteRhymeTable);
+  $$FavoriteRhymeModelTableTableManager get favoriteRhymeModel =>
+      $$FavoriteRhymeModelTableTableManager(_db, _db.favoriteRhymeModel);
 }

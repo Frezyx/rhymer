@@ -9,40 +9,39 @@ class FavoritesRepository implements FavoritesRepositoryI {
 
   @override
   Future<List<FavoriteRhyme>> getRhymesList() async {
-    final data = await db.select(db.favoriteRhymeTable).get();
+    final data = await db.select(db.favoriteRhymeModel).get();
     return data.map((e) => FavoriteRhyme.fromTable(e)).toList();
   }
 
   @override
   Future<void> createOrDeleteRhyme(CreateFavoriteRhyme rhyme) async {
     // Проверяем, существует ли запись с такими же queryWord и favoriteWord
-    final select = db.select(db.favoriteRhymeTable);
+    final select = db.select(db.favoriteRhymeModel);
     final existingRhyme = await (select
           ..where((e) => _uniqFavoriteExpr(e, rhyme)))
         .getSingleOrNull();
 
     if (existingRhyme != null) {
       // Если запись существует, удаляем её
-      final delete = db.delete(db.favoriteRhymeTable);
+      final delete = db.delete(db.favoriteRhymeModel);
       await (delete..where((e) => e.id.equals(existingRhyme.id))).go();
       return;
     }
     // Если записи нет, создаём новую
-    await createRhyme(rhyme);
+    await _createRhyme(rhyme);
   }
 
-  @override
-  Future<void> createRhyme(CreateFavoriteRhyme rhyme) async {
-    await db.into(db.favoriteRhymeTable).insert(rhyme.toCompanion());
+  Future<void> _createRhyme(CreateFavoriteRhyme rhyme) async {
+    await db.into(db.favoriteRhymeModel).insert(rhyme.toCompanion());
   }
 
   @override
   Future<void> clear() async {
-    await db.delete(db.favoriteRhymeTable).go();
+    await db.delete(db.favoriteRhymeModel).go();
   }
 
   Expression<bool> _uniqFavoriteExpr(
-    $FavoriteRhymeTableTable e,
+    $FavoriteRhymeModelTable e,
     CreateFavoriteRhyme rhyme,
   ) =>
       Expression.and(

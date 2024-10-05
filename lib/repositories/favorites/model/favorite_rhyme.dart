@@ -26,7 +26,7 @@ class FavoriteRhyme extends Equatable {
         createdAt: createdAt,
       );
 
-  factory FavoriteRhyme.fromTable(FavoriteRhymeTableData data) {
+  factory FavoriteRhyme.fromTable(FavoriteRhymeModelData data) {
     final decoded = List<String>.from(jsonDecode(data.words));
     final words = data.words.isEmpty ? <String>[] : decoded;
     return FavoriteRhyme(
@@ -83,8 +83,8 @@ class CreateFavoriteRhyme extends Equatable {
         createdAt: DateTime.now(),
       );
 
-  FavoriteRhymeTableCompanion toCompanion() {
-    return FavoriteRhymeTableCompanion(
+  FavoriteRhymeModelCompanion toCompanion() {
+    return FavoriteRhymeModelCompanion(
       queryWord: Value(queryWord),
       favoriteWord: Value(favoriteWord),
       words: Value(jsonEncode(words)),

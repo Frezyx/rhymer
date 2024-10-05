@@ -4,7 +4,7 @@ import 'package:rhymer/repositories/favorites/favorites.dart';
 
 part 'drift.g.dart';
 
-@DriftDatabase(tables: [FavoriteRhymeTable])
+@DriftDatabase(tables: [FavoriteRhymeModel])
 class AppDatabase extends _$AppDatabase {
   // After generating code, this class needs to define a `schemaVersion` getter
   // and a constructor telling drift where the database should be stored.

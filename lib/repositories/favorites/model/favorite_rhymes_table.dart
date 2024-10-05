@@ -1,6 +1,6 @@
 import 'package:drift/drift.dart';
 
-class FavoriteRhymeTable extends Table {
+class FavoriteRhymeModel extends Table {
   IntColumn get id => integer().autoIncrement()();
   TextColumn get queryWord => text()();
   TextColumn get favoriteWord => text()();
