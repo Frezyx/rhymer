@@ -50,7 +50,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                     delegate: SliverChildBuilderDelegate(
                       (BuildContext context, int index) {
                         return RhymeHistoryCard(
-                          word: state.rhymes[index].word,
+                          word: state.rhymes[index].queryWord,
                           rhymes: state.rhymes[index].words,
                         );
                       },

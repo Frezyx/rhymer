@@ -1,25 +1,26 @@
-import 'package:realm/realm.dart';
 import 'package:rhymer/repositories/history/history.dart';
+import 'package:rhymer/utils/database/drift.dart';
 
 class HistoryRepository implements HistoryRepositoryI {
   HistoryRepository({
-    required this.realm,
+    required this.db,
   });
 
-  final Realm realm;
+  final AppDatabase db;
 
   @override
-  Future<List<HistoryRhymes>> getRhymesList() async {
-    return realm.all<HistoryRhymes>().toList();
+  Future<List<HistoryRhyme>> getRhymesList() async {
+    final data = await db.select(db.historyRhymeModel).get();
+    return data.map((e) => HistoryRhyme.fromTable(e)).toList();
   }
 
   @override
-  Future<void> setRhymes(HistoryRhymes rhymes) async {
-    realm.write(() => realm.add(rhymes));
+  Future<void> createRhyme(CreateHistoryRhyme rhyme) async {
+    await db.into(db.historyRhymeModel).insert(rhyme.toCompanion());
   }
 
   @override
   Future<void> clear() async {
-    realm.write(() => realm.deleteAll<HistoryRhymes>());
+    await db.delete(db.historyRhymeModel).go();
   }
 }

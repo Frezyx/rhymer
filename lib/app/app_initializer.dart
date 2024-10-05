@@ -27,7 +27,7 @@ class AppInitializer extends StatelessWidget {
       providers: [
         RepositoryProvider<HistoryRepositoryI>(
           create: (context) => HistoryRepository(
-            realm: config.realm,
+            db: config.database,
           ),
         ),
         RepositoryProvider<FavoritesRepositoryI>(

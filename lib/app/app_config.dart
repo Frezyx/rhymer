@@ -1,6 +1,5 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:realm/realm.dart';
 import 'package:rhymer/api/api.dart';
 import 'package:rhymer/utils/database/drift.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -8,7 +7,6 @@ import 'package:talker/talker.dart';
 
 class AppConfig {
   AppConfig({
-    required this.realm,
     required this.database,
     required this.preferences,
     required this.localNotificationsPlugin,
@@ -17,7 +15,6 @@ class AppConfig {
     required this.apiClient,
   });
 
-  final Realm realm;
   final AppDatabase database;
   final SharedPreferences preferences;
   final FlutterLocalNotificationsPlugin localNotificationsPlugin;

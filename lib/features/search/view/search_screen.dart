@@ -134,8 +134,8 @@ class _SearchScreenState extends State<SearchScreen> {
                     itemBuilder: (context, index) {
                       final rhymes = history[index];
                       return RhymeHistoryCarouselCard(
+                        word: rhymes.queryWord,
                         rhymes: rhymes.words,
-                        word: rhymes.word,
                       );
                     },
                   ),

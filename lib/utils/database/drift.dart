@@ -1,10 +1,11 @@
 import 'package:drift/drift.dart';
 import 'package:drift_flutter/drift_flutter.dart';
 import 'package:rhymer/repositories/favorites/favorites.dart';
+import 'package:rhymer/repositories/history/history.dart';
 
 part 'drift.g.dart';
 
-@DriftDatabase(tables: [FavoriteRhymeModel])
+@DriftDatabase(tables: [FavoriteRhymeModel, HistoryRhymeModel])
 class AppDatabase extends _$AppDatabase {
   // After generating code, this class needs to define a `schemaVersion` getter
   // and a constructor telling drift where the database should be stored.

@@ -6,7 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rhymer/api/api.dart';
 import 'package:rhymer/api/models/models.dart';
 import 'package:rhymer/repositories/favorites/favorites.dart';
-import 'package:rhymer/repositories/history/history_repository_interface.dart';
+import 'package:rhymer/repositories/history/history.dart';
 
 part 'rhymes_list_event.dart';
 part 'rhymes_list_state.dart';
@@ -35,8 +35,11 @@ class RhymesListBloc extends Bloc<RhymesListEvent, RhymesListState> {
     try {
       emit(RhymesListLoading());
       final rhymes = await _apiClient.getRhymesList(event.query);
-      final historyRhyems = rhymes.toHistory(event.query);
-      await _historyRepository.setRhymes(historyRhyems);
+      final createHistoryRhyme = CreateHistoryRhyme.create(
+        queryWord: event.query,
+        words: rhymes.words,
+      );
+      await _historyRepository.createRhyme(createHistoryRhyme);
       final favoriteRhymes = await _favoritesRepository.getRhymesList();
       emit(
         RhymesListLoaded(

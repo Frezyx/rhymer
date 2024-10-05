@@ -4,11 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:realm/realm.dart';
 import 'package:rhymer/api/api.dart';
 import 'package:rhymer/app/app.dart';
 import 'package:rhymer/firebase_options.dart';
-import 'package:rhymer/repositories/history/models/models.dart';
 import 'package:rhymer/utils/database/drift.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:talker_bloc_logger/talker_bloc_logger.dart';
@@ -20,7 +18,6 @@ Future<void> main() async {
 
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
-  final realm = _initRealm();
   final prefs = await _initPrefs();
   final database = AppDatabase();
   final talker = TalkerFlutter.init();
@@ -32,7 +29,6 @@ Future<void> main() async {
   Bloc.observer = TalkerBlocObserver(talker: talker);
 
   final config = AppConfig(
-    realm: realm,
     database: database,
     preferences: prefs,
     localNotificationsPlugin: FlutterLocalNotificationsPlugin(),
@@ -47,10 +43,4 @@ Future<void> main() async {
 Future<SharedPreferences> _initPrefs() async {
   final prefs = await SharedPreferences.getInstance();
   return prefs;
-}
-
-Realm _initRealm() {
-  final realmConfig = Configuration.local([HistoryRhymes.schema]);
-  final realm = Realm(realmConfig);
-  return realm;
 }
