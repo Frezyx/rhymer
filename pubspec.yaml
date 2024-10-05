@@ -31,6 +31,10 @@ dependencies:
   drift: ^2.20.3
   drift_flutter: ^0.1.0
 
+  talker: 4.4.1
+  talker_flutter: 4.4.1
+  talker_dio_logger: 4.4.1
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

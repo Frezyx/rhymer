@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:rhymer/api/api.dart';
 import 'package:rhymer/app/app.dart';
 import 'package:rhymer/bloc/theme/theme_cubit.dart';
 import 'package:rhymer/features/favorites/bloc/bloc/favorite_rhymes_bloc.dart';
@@ -53,7 +51,7 @@ class AppInitializer extends StatelessWidget {
         providers: [
           BlocProvider(
             create: (context) => RhymesListBloc(
-              apiClient: RhymerApiClient.create(apiUrl: dotenv.env['API_URL']),
+              apiClient: config.apiClient,
               historyRepository: context.read<HistoryRepositoryI>(),
               favoritesRepositoryInterface:
                   context.read<FavoritesRepositoryI>(),

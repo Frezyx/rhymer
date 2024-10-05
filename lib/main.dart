@@ -4,11 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:realm/realm.dart';
+import 'package:rhymer/api/api.dart';
 import 'package:rhymer/app/app.dart';
 import 'package:rhymer/firebase_options.dart';
 import 'package:rhymer/repositories/history/models/models.dart';
 import 'package:rhymer/utils/database/drift.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:talker/talker.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,6 +21,11 @@ Future<void> main() async {
   final realm = _initRealm();
   final prefs = await _initPrefs();
   final database = AppDatabase();
+  final talker = Talker();
+  final apiClient = RhymerApiClient.create(
+    apiUrl: dotenv.env['API_URL'],
+    talker: talker,
+  );
 
   final config = AppConfig(
     realm: realm,
@@ -26,7 +33,10 @@ Future<void> main() async {
     preferences: prefs,
     localNotificationsPlugin: FlutterLocalNotificationsPlugin(),
     firebaseMessaging: FirebaseMessaging.instance,
+    talker: talker,
+    apiClient: apiClient,
   );
+
   runApp(RhymerApp(config: config));
 }
 
