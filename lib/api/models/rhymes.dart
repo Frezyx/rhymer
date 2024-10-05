@@ -1,7 +1,4 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:realm/realm.dart';
-import 'package:rhymer/repositories/favorites/favorites.dart';
-import 'package:rhymer/repositories/history/models/history_rhymes.dart';
 
 part 'rhymes.g.dart';
 
@@ -14,19 +11,4 @@ class Rhymes {
   final List<String> words;
 
   Map<String, dynamic> toJson() => _$RhymesToJson(this);
-
-  HistoryRhymes toHistory(String queryWord) => HistoryRhymes(
-        Uuid.v4().toString(),
-        queryWord,
-        words: words,
-      );
-
-  FavoriteRhymes toFavorite(String queryWord, String favoriteWord) =>
-      FavoriteRhymes(
-        Uuid.v4().toString(),
-        queryWord,
-        favoriteWord,
-        DateTime.now(),
-        words: words,
-      );
 }

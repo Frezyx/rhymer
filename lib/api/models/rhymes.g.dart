@@ -13,9 +13,3 @@ Rhymes _$RhymesFromJson(Map<String, dynamic> json) => Rhymes(
 Map<String, dynamic> _$RhymesToJson(Rhymes instance) => <String, dynamic>{
       'words': instance.words,
     };
-
-// **************************************************************************
-// RealmObjectGenerator
-// **************************************************************************
-
-// ignore_for_file: type=lint

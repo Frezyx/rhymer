@@ -1,34 +1,53 @@
-import 'package:realm/realm.dart';
+import 'package:drift/drift.dart';
 import 'package:rhymer/repositories/favorites/favorites.dart';
+import 'package:rhymer/utils/database/drift.dart';
 
 class FavoritesRepository implements FavoritesRepositoryI {
-  FavoritesRepository({
-    required this.realm,
-  });
+  FavoritesRepository({required this.db});
 
-  final Realm realm;
+  final AppDatabase db;
 
   @override
-  Future<List<FavoriteRhymes>> getRhymesList() async {
-    return realm.all<FavoriteRhymes>().toList();
+  Future<List<FavoriteRhyme>> getRhymesList() async {
+    final data = await db.select(db.favoriteRhymeModel).get();
+    return data.map((e) => FavoriteRhyme.fromTable(e)).toList();
   }
 
   @override
-  Future<void> createOrDeleteRhymes(FavoriteRhymes rhymes) async {
-    final rhymesList = realm.query<FavoriteRhymes>(
-      "queryWord == '${rhymes.queryWord}' AND favoriteWord == '${rhymes.favoriteWord}'",
-    );
-    if (rhymesList.isNotEmpty) {
-      for (var e in rhymesList) {
-        realm.write(() => realm.delete(e));
-      }
+  Future<void> createOrDeleteRhyme(CreateFavoriteRhyme rhyme) async {
+    // Проверяем, существует ли запись с такими же queryWord и favoriteWord
+    final select = db.select(db.favoriteRhymeModel);
+    final existingRhyme = await (select
+          ..where((e) => _uniqFavoriteExpr(e, rhyme)))
+        .getSingleOrNull();
+
+    if (existingRhyme != null) {
+      // Если запись существует, удаляем её
+      final delete = db.delete(db.favoriteRhymeModel);
+      await (delete..where((e) => e.id.equals(existingRhyme.id))).go();
       return;
     }
-    realm.write(() => realm.add(rhymes));
+    // Если записи нет, создаём новую
+    await _createRhyme(rhyme);
+  }
+
+  Future<void> _createRhyme(CreateFavoriteRhyme rhyme) async {
+    await db.into(db.favoriteRhymeModel).insert(rhyme.toCompanion());
   }
 
   @override
   Future<void> clear() async {
-    realm.write(() => realm.deleteAll<FavoriteRhymes>());
+    await db.delete(db.favoriteRhymeModel).go();
   }
+
+  Expression<bool> _uniqFavoriteExpr(
+    $FavoriteRhymeModelTable e,
+    CreateFavoriteRhyme rhyme,
+  ) =>
+      Expression.and(
+        [
+          e.queryWord.equals(rhyme.queryWord),
+          e.favoriteWord.equals(rhyme.favoriteWord)
+        ],
+      );
 }

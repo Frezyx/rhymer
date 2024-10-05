@@ -41,139 +41,142 @@ class _SearchScreenState extends State<SearchScreen> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    return CustomScrollView(
-      slivers: [
-        SliverAppBar(
-          backgroundColor: theme.cardColor,
-          pinned: true,
-          snap: true,
-          floating: true,
-          title: const Text('Rhymer'),
-          elevation: 0,
-          toolbarHeight: 30,
-          surfaceTintColor: Colors.transparent,
-          bottom: PreferredSize(
-            preferredSize: const Size.fromHeight(88),
-            child: Padding(
-              padding: const EdgeInsets.all(20),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: theme.hintColor.withOpacity(0.1),
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: TextField(
-                        controller: _searchController,
-                        textInputAction: TextInputAction.search,
-                        onSubmitted: (value) => _onTapSearch(context),
-                        decoration: InputDecoration(
-                          hintText: 'Начни вводить слово...',
-                          hintStyle: TextStyle(
-                            color: theme.hintColor.withOpacity(0.5),
-                            fontWeight: FontWeight.w400,
-                          ),
-                          contentPadding: const EdgeInsets.symmetric(
-                            horizontal: 12,
-                          ),
-                          enabledBorder: const OutlineInputBorder(
-                            borderSide: BorderSide.none,
-                          ),
-                          border: const OutlineInputBorder(
-                            borderSide: BorderSide.none,
+    return GestureDetector(
+      onTap: FocusScope.of(context).unfocus,
+      child: CustomScrollView(
+        slivers: [
+          SliverAppBar(
+            backgroundColor: theme.cardColor,
+            pinned: true,
+            snap: true,
+            floating: true,
+            title: const Text('Rhymer'),
+            elevation: 0,
+            toolbarHeight: 30,
+            surfaceTintColor: Colors.transparent,
+            bottom: PreferredSize(
+              preferredSize: const Size.fromHeight(88),
+              child: Padding(
+                padding: const EdgeInsets.all(20),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: theme.hintColor.withOpacity(0.1),
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: TextField(
+                          controller: _searchController,
+                          textInputAction: TextInputAction.search,
+                          onSubmitted: (value) => _onTapSearch(context),
+                          decoration: InputDecoration(
+                            hintText: 'Начни вводить слово...',
+                            hintStyle: TextStyle(
+                              color: theme.hintColor.withOpacity(0.5),
+                              fontWeight: FontWeight.w400,
+                            ),
+                            contentPadding: const EdgeInsets.symmetric(
+                              horizontal: 12,
+                            ),
+                            enabledBorder: const OutlineInputBorder(
+                              borderSide: BorderSide.none,
+                            ),
+                            border: const OutlineInputBorder(
+                              borderSide: BorderSide.none,
+                            ),
                           ),
                         ),
                       ),
                     ),
-                  ),
-                  const SizedBox(width: 8),
-                  GestureDetector(
-                    onTap: () => _onTapSearch(context),
-                    child: Container(
-                      height: 48,
-                      width: 48,
-                      decoration: BoxDecoration(
-                        color: theme.primaryColor,
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: const Icon(
-                        Icons.search,
-                        color: Colors.white,
+                    const SizedBox(width: 8),
+                    GestureDetector(
+                      onTap: () => _onTapSearch(context),
+                      child: Container(
+                        height: 48,
+                        width: 48,
+                        decoration: BoxDecoration(
+                          color: theme.primaryColor,
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: const Icon(
+                          Icons.search,
+                          color: Colors.white,
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
+              // SearchButtion(
+              //   controller: _searchController,
+              //   onTap: () => _showSearchBottomSheet(context),
+              // ),
             ),
-            // SearchButtion(
-            //   controller: _searchController,
-            //   onTap: () => _showSearchBottomSheet(context),
-            // ),
           ),
-        ),
-        const SliverToBoxAdapter(child: SizedBox(height: 16)),
-        SliverToBoxAdapter(
-          child: BlocBuilder<HistoryRhymesBloc, HistoryRhymesState>(
-            builder: (context, state) {
-              if (state is! HistoryRhymesLoaded || state.rhymes.isEmpty) {
-                return const SizedBox();
-              }
-              final history = state.rhymes.reversed.toList();
-              return SizedBox(
-                height: 58,
-                child: ListView.separated(
-                  padding: const EdgeInsets.only(left: 16),
-                  scrollDirection: Axis.horizontal,
-                  itemCount: history.length,
-                  separatorBuilder: (context, index) => const SizedBox(
-                    width: 8,
+          const SliverToBoxAdapter(child: SizedBox(height: 16)),
+          SliverToBoxAdapter(
+            child: BlocBuilder<HistoryRhymesBloc, HistoryRhymesState>(
+              builder: (context, state) {
+                if (state is! HistoryRhymesLoaded || state.rhymes.isEmpty) {
+                  return const SizedBox();
+                }
+                final history = state.rhymes;
+                return SizedBox(
+                  height: 58,
+                  child: ListView.separated(
+                    padding: const EdgeInsets.only(left: 16),
+                    scrollDirection: Axis.horizontal,
+                    itemCount: history.length,
+                    separatorBuilder: (context, index) => const SizedBox(
+                      width: 8,
+                    ),
+                    itemBuilder: (context, index) {
+                      final rhymes = history[index];
+                      return RhymeHistoryCarouselCard(
+                        word: rhymes.queryWord,
+                        rhymes: rhymes.words,
+                      );
+                    },
                   ),
+                );
+              },
+            ),
+          ),
+          const SliverToBoxAdapter(child: SizedBox(height: 16)),
+          BlocConsumer<RhymesListBloc, RhymesListState>(
+            listener: _handleRhymesListState,
+            builder: (context, state) {
+              if (state is RhymesListLoaded) {
+                final rhymesModel = state.rhymes;
+                final rhymes = rhymesModel.words;
+                return SliverList.builder(
+                  itemCount: rhymes.length,
                   itemBuilder: (context, index) {
-                    final rhymes = history[index];
-                    return RhymeHistoryCarouselCard(
-                      rhymes: rhymes.words,
-                      word: rhymes.word,
+                    final rhyme = rhymes[index];
+                    return RhymeListCard(
+                      rhyme: rhyme,
+                      isFavorite: state.isFavorite(rhyme),
+                      onTap: () =>
+                          _toggleFavorite(context, rhymesModel, state, rhyme),
                     );
                   },
+                );
+              }
+              if (state is RhymesListInitial) {
+                return const SliverFillRemaining(
+                  child: RhymesListInitialBanner(),
+                );
+              }
+              return const SliverFillRemaining(
+                child: Center(
+                  child: CircularProgressIndicator(),
                 ),
               );
             },
-          ),
-        ),
-        const SliverToBoxAdapter(child: SizedBox(height: 16)),
-        BlocConsumer<RhymesListBloc, RhymesListState>(
-          listener: _handleRhymesListState,
-          builder: (context, state) {
-            if (state is RhymesListLoaded) {
-              final rhymesModel = state.rhymes;
-              final rhymes = rhymesModel.words;
-              return SliverList.builder(
-                itemCount: rhymes.length,
-                itemBuilder: (context, index) {
-                  final rhyme = rhymes[index];
-                  return RhymeListCard(
-                    rhyme: rhyme,
-                    isFavorite: state.isFavorite(rhyme),
-                    onTap: () =>
-                        _toggleFavorite(context, rhymesModel, state, rhyme),
-                  );
-                },
-              );
-            }
-            if (state is RhymesListInitial) {
-              return const SliverFillRemaining(
-                child: RhymesListInitialBanner(),
-              );
-            }
-            return const SliverFillRemaining(
-              child: Center(
-                child: CircularProgressIndicator(),
-              ),
-            );
-          },
-        )
-      ],
+          )
+        ],
+      ),
     );
   }
 
