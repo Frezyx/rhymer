@@ -3,6 +3,7 @@ import 'package:rhymer/app/app_config.dart';
 import 'package:rhymer/repositories/favorites/favorites.dart';
 import 'package:rhymer/repositories/history/history.dart';
 import 'package:rhymer/repositories/notifications/notifications.dart';
+import 'package:rhymer/repositories/rhymes/mock/mock_rhymes_repository.dart';
 import 'package:rhymer/repositories/rhymes/rhymes.dart';
 import 'package:rhymer/repositories/settings/settings.dart';
 
@@ -29,6 +30,20 @@ class RepositoryContainer {
         favoritesRepository: FavoritesRepository(db: config.database),
         settingsRepository: SettingsRepository(preferences: config.preferences),
         rhymesRepository: RhymesRepository(apiClient: config.apiClient),
+        notificationsRepository: NotificationsRepository(
+          localNotifications: config.localNotificationsPlugin,
+          firebaseMessaging: config.firebaseMessaging,
+        ),
+      );
+
+  factory RepositoryContainer.dev({
+    required AppConfig config,
+  }) =>
+      RepositoryContainer(
+        historyRepository: HistoryRepository(db: config.database),
+        favoritesRepository: FavoritesRepository(db: config.database),
+        settingsRepository: SettingsRepository(preferences: config.preferences),
+        rhymesRepository: MockRhymesRepository(),
         notificationsRepository: NotificationsRepository(
           localNotifications: config.localNotificationsPlugin,
           firebaseMessaging: config.firebaseMessaging,
