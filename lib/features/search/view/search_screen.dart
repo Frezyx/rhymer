@@ -68,26 +68,9 @@ class _SearchScreenState extends State<SearchScreen> {
                           color: theme.hintColor.withOpacity(0.1),
                           borderRadius: BorderRadius.circular(12),
                         ),
-                        child: TextField(
+                        child: SearchTextField(
                           controller: _searchController,
-                          textInputAction: TextInputAction.search,
                           onSubmitted: (value) => _onTapSearch(context),
-                          decoration: InputDecoration(
-                            hintText: 'Начни вводить слово...',
-                            hintStyle: TextStyle(
-                              color: theme.hintColor.withOpacity(0.5),
-                              fontWeight: FontWeight.w400,
-                            ),
-                            contentPadding: const EdgeInsets.symmetric(
-                              horizontal: 12,
-                            ),
-                            enabledBorder: const OutlineInputBorder(
-                              borderSide: BorderSide.none,
-                            ),
-                            border: const OutlineInputBorder(
-                              borderSide: BorderSide.none,
-                            ),
-                          ),
                         ),
                       ),
                     ),
