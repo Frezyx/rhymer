@@ -42,6 +42,8 @@ const _textTheme = TextTheme(
 
 extension ThemePlatformExtension on ThemeData {
   bool get isAndroid => defaultTargetPlatform == TargetPlatform.android;
+  bool get isCupertino => [TargetPlatform.iOS, TargetPlatform.macOS]
+      .contains(defaultTargetPlatform);
   Color get cupertinoAlertColor => const Color(0xFFF82B10);
   Color get cupertinoActionColor => const Color(0xFF3478F7);
 }

@@ -54,7 +54,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                 );
               }
               return const SliverFillRemaining(
-                child: CircularProgressIndicator(),
+                child: PlatformProgressIndicator(),
               );
             },
           ),

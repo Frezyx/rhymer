@@ -164,7 +164,7 @@ class _SearchScreenState extends State<SearchScreen> {
                 );
               }
               return const SliverFillRemaining(
-                child: Center(child: CircularProgressIndicator()),
+                child: Center(child: PlatformProgressIndicator()),
               );
             },
           )
