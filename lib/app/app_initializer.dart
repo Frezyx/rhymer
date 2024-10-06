@@ -9,6 +9,7 @@ import 'package:rhymer/features/search/bloc/rhymes_list_bloc.dart';
 import 'package:rhymer/repositories/favorites/favorites.dart';
 import 'package:rhymer/repositories/history/history_repository_interface.dart';
 import 'package:rhymer/repositories/notifications/notifications.dart';
+import 'package:rhymer/repositories/rhymes/rhymes.dart';
 import 'package:rhymer/repositories/settings/settings.dart';
 
 class AppInitializer extends StatelessWidget {
@@ -39,12 +40,15 @@ class AppInitializer extends StatelessWidget {
         RepositoryProvider<NotificationsRepositoryI>(
           create: (context) => repositoryContainer.notificationsRepository,
         ),
+        RepositoryProvider<RhymesRepositoryI>(
+          create: (context) => repositoryContainer.rhymesRepository,
+        ),
       ],
       child: MultiBlocProvider(
         providers: [
           BlocProvider(
             create: (context) => RhymesListBloc(
-              apiClient: config.apiClient,
+              rhymesRepository: context.read<RhymesRepositoryI>(),
               historyRepository: context.read<HistoryRepositoryI>(),
               favoritesRepositoryInterface:
                   context.read<FavoritesRepositoryI>(),

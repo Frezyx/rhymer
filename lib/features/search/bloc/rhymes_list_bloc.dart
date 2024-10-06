@@ -3,28 +3,28 @@ import 'dart:developer';
 
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:rhymer/api/api.dart';
 import 'package:rhymer/api/models/models.dart';
 import 'package:rhymer/repositories/favorites/favorites.dart';
 import 'package:rhymer/repositories/history/history.dart';
+import 'package:rhymer/repositories/rhymes/rhymes.dart';
 
 part 'rhymes_list_event.dart';
 part 'rhymes_list_state.dart';
 
 class RhymesListBloc extends Bloc<RhymesListEvent, RhymesListState> {
   RhymesListBloc({
-    required RhymerApiClient apiClient,
+    required RhymesRepositoryI rhymesRepository,
     required HistoryRepositoryI historyRepository,
     required FavoritesRepositoryI favoritesRepositoryInterface,
   })  : _historyRepository = historyRepository,
         _favoritesRepository = favoritesRepositoryInterface,
-        _apiClient = apiClient,
+        _rhymesRepositoryI = rhymesRepository,
         super(RhymesListInitial()) {
     on<SearchRhymes>(_onSearch);
     on<ToggleFavoriteRhymes>(_onToggleFavorite);
   }
 
-  final RhymerApiClient _apiClient;
+  final RhymesRepositoryI _rhymesRepositoryI;
   final HistoryRepositoryI _historyRepository;
   final FavoritesRepositoryI _favoritesRepository;
 
@@ -34,7 +34,7 @@ class RhymesListBloc extends Bloc<RhymesListEvent, RhymesListState> {
   ) async {
     try {
       emit(RhymesListLoading());
-      final rhymes = await _apiClient.getRhymesList(event.query);
+      final rhymes = await _rhymesRepositoryI.fetchRhymesList(event.query);
       final createHistoryRhyme = CreateHistoryRhyme.create(
         queryWord: event.query,
         words: rhymes.words,
