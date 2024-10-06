@@ -10,7 +10,8 @@ class MockRhymesRepository implements RhymesRepositoryI {
     return Rhymes(
       words: List.generate(
         20,
-        (index) => Random(rhyme.hashCode).nextInt(100000000).toString(),
+        (index) =>
+            (Random(rhyme.hashCode).nextInt(10000) * (index + 1)).toString(),
       ),
     );
   }
