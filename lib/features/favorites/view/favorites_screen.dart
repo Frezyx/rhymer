@@ -30,6 +30,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
           const SliverAppBar(
             snap: true,
             floating: true,
+            centerTitle: true,
             title: Text('Избранное'),
             elevation: 0,
             surfaceTintColor: Colors.transparent,

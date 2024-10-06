@@ -50,6 +50,7 @@ class _SearchScreenState extends State<SearchScreen> {
             pinned: true,
             snap: true,
             floating: true,
+            centerTitle: true,
             title: const Text('Rhymer'),
             elevation: 0,
             toolbarHeight: 30,
