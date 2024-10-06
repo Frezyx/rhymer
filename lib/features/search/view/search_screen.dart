@@ -9,6 +9,7 @@ import 'package:rhymer/features/favorites/bloc/bloc/favorite_rhymes_bloc.dart';
 import 'package:rhymer/features/history/bloc/history_rhymes_bloc.dart';
 import 'package:rhymer/features/search/bloc/rhymes_list_bloc.dart';
 import 'package:rhymer/features/search/widgets/widgets.dart';
+import 'package:rhymer/repositories/favorites/favorites.dart';
 import 'package:rhymer/repositories/notifications/notifications.dart';
 import 'package:rhymer/ui/ui.dart';
 
@@ -155,11 +156,16 @@ class _SearchScreenState extends State<SearchScreen> {
                   itemCount: rhymes.length,
                   itemBuilder: (context, index) {
                     final rhyme = rhymes[index];
+                    final favorite = state.favorite(rhyme);
                     return RhymeListCard(
                       rhyme: rhyme,
-                      isFavorite: state.isFavorite(rhyme),
-                      onTap: () =>
-                          _toggleFavorite(context, rhymesModel, state, rhyme),
+                      isFavorite: favorite != null,
+                      onTap: () => _toggleFavorite(
+                        context,
+                        rhymesModel,
+                        rhyme,
+                        favorite,
+                      ),
                     );
                   },
                 );
@@ -192,8 +198,8 @@ class _SearchScreenState extends State<SearchScreen> {
   Future<void> _toggleFavorite(
     BuildContext context,
     Rhymes rhymesModel,
-    RhymesListLoaded state,
     String currentRhyme,
+    FavoriteRhyme? favorite,
   ) async {
     final rhymesListBloc = BlocProvider.of<RhymesListBloc>(context);
     final favoriteRhymesBloc = BlocProvider.of<FavoriteRhymesBloc>(context);
@@ -201,8 +207,8 @@ class _SearchScreenState extends State<SearchScreen> {
     final completer = Completer();
     rhymesListBloc.add(
       ToggleFavoriteRhymes(
+        favorite: favorite,
         rhymes: rhymesModel,
-        query: state.query,
         favoriteWord: currentRhyme,
         completer: completer,
       ),
@@ -216,7 +222,7 @@ class _SearchScreenState extends State<SearchScreen> {
     RhymesListState state,
   ) {
     if (state is RhymesListLoaded) {
-      BlocProvider.of<HistoryRhymesBloc>(context).add(LoadHistoryRhymes());
+      context.read<HistoryRhymesBloc>().add(LoadHistoryRhymes());
     }
   }
 

@@ -15,32 +15,31 @@ final class RhymesListLoaded extends RhymesListState {
   const RhymesListLoaded({
     required this.rhymes,
     required this.query,
-    required List<FavoriteRhyme> favoriteRhymes,
-  }) : _favoriteRhymes = favoriteRhymes;
+    required this.favorites,
+  });
 
   final String query;
   final Rhymes rhymes;
-  final List<FavoriteRhyme> _favoriteRhymes;
+  final List<FavoriteRhyme> favorites;
 
-  bool isFavorite(String rhyme) {
-    return _favoriteRhymes
-        .where((e) => e.favoriteWord == rhyme && e.queryWord == query)
-        .isNotEmpty;
+  FavoriteRhyme? favorite(String rhyme) {
+    return favorites.firstWhereOrNull(
+      (e) => e.favoriteWord == rhyme && e.queryWord == query,
+    );
   }
 
   @override
-  List<Object> get props =>
-      super.props..addAll([rhymes, query, _favoriteRhymes]);
+  List<Object> get props => super.props..addAll([rhymes, query, favorites]);
 
   RhymesListLoaded copyWith({
     String? query,
     Rhymes? rhymes,
-    List<FavoriteRhyme>? favoriteRhymes,
+    List<FavoriteRhyme>? favorites,
   }) {
     return RhymesListLoaded(
       query: query ?? this.query,
       rhymes: rhymes ?? this.rhymes,
-      favoriteRhymes: favoriteRhymes ?? _favoriteRhymes,
+      favorites: favorites ?? this.favorites,
     );
   }
 }

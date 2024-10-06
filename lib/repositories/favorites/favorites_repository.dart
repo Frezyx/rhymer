@@ -32,8 +32,8 @@ class FavoritesRepository implements FavoritesRepositoryI {
   }
 
   @override
-  Future<void> create(CreateFavoriteRhyme rhyme) async {
-    await db.into(db.favoriteRhymeModel).insert(rhyme.toCompanion());
+  Future<int> create(CreateFavoriteRhyme rhyme) async {
+    return await db.into(db.favoriteRhymeModel).insert(rhyme.toCompanion());
   }
 
   @override

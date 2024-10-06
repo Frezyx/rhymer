@@ -7,6 +7,7 @@ import 'package:rhymer/api/models/models.dart';
 import 'package:rhymer/repositories/favorites/favorites.dart';
 import 'package:rhymer/repositories/history/history.dart';
 import 'package:rhymer/repositories/rhymes/rhymes.dart';
+import 'package:rhymer/utils/extensions/extensions.dart';
 
 part 'rhymes_list_event.dart';
 part 'rhymes_list_state.dart';
@@ -45,7 +46,7 @@ class RhymesListBloc extends Bloc<RhymesListEvent, RhymesListState> {
         RhymesListLoaded(
           rhymes: rhymes,
           query: event.query,
-          favoriteRhymes: favoriteRhymes,
+          favorites: favoriteRhymes,
         ),
       );
     } catch (e) {
@@ -64,14 +65,14 @@ class RhymesListBloc extends Bloc<RhymesListEvent, RhymesListState> {
         log('state is not RhymesListLoaded');
         return;
       }
-      final createFavoriteRhyme = CreateFavoriteRhyme.create(
-        queryWord: event.query,
+      final createModel = CreateFavoriteRhyme.create(
+        queryWord: prevState.query,
         favoriteWord: event.favoriteWord,
         words: event.rhymes.words,
       );
-      await _favoritesRepository.createOrDeleteRhyme(createFavoriteRhyme);
-      final favoriteRhymes = await _favoritesRepository.getRhymesList();
-      emit(prevState.copyWith(favoriteRhymes: favoriteRhymes));
+      await _favoritesRepository.createOrDeleteRhyme(createModel);
+      final favorites = await _favoritesRepository.getRhymesList();
+      emit(prevState.copyWith(favorites: favorites));
     } catch (e) {
       emit(RhymesListFailure(e));
     } finally {

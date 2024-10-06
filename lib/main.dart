@@ -21,7 +21,6 @@ Future<void> main() async {
   final prefs = await _initPrefs();
   final database = AppDatabase();
   final talker = TalkerFlutter.init();
-  talker.disable();
   final apiClient = RhymerApiClient.create(
     apiUrl: dotenv.env['API_URL'],
     talker: talker,
