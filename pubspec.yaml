@@ -39,6 +39,9 @@ dependencies:
   talker_dio_logger: 4.4.1
   talker_bloc_logger: 4.4.1
 
+  yandex_mobileads: ^7.4.0
+  appmetrica_plugin: ^3.1.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

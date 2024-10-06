@@ -1,4 +1,93 @@
 PODS:
+  - AppLovinSDK (12.6.1)
+  - AppLovinYandexMobileAdsAdapters (12.6.1.2):
+    - AppLovinSDK (~> 12.6.1)
+    - YandexMobileAds (= 7.5.1)
+  - appmetrica_plugin (3.1.0):
+    - AppMetricaAnalytics (~> 5.8)
+    - Flutter
+  - AppMetricaAdSupport (5.8.1):
+    - AppMetricaCore (= 5.8.1)
+    - AppMetricaCoreExtension (= 5.8.1)
+  - AppMetricaAnalytics (5.8.1):
+    - AppMetricaAdSupport (= 5.8.1)
+    - AppMetricaCore (= 5.8.1)
+    - AppMetricaCrashes (= 5.8.1)
+    - AppMetricaWebKit (= 5.8.1)
+  - AppMetricaCore (5.8.1):
+    - AppMetricaCoreUtils (= 5.8.1)
+    - AppMetricaEncodingUtils (= 5.8.1)
+    - AppMetricaFMDB (= 5.8.1)
+    - AppMetricaHostState (= 5.8.1)
+    - AppMetricaLog (= 5.8.1)
+    - AppMetricaNetwork (= 5.8.1)
+    - AppMetricaPlatform (= 5.8.1)
+    - AppMetricaProtobuf (= 5.8.1)
+    - AppMetricaProtobufUtils (= 5.8.1)
+    - AppMetricaStorageUtils (= 5.8.1)
+  - AppMetricaCoreExtension (5.8.1):
+    - AppMetricaCore (= 5.8.1)
+    - AppMetricaStorageUtils (= 5.8.1)
+  - AppMetricaCoreUtils (5.8.1):
+    - AppMetricaLog (= 5.8.1)
+  - AppMetricaCrashes (5.8.1):
+    - AppMetricaCore (= 5.8.1)
+    - AppMetricaCoreExtension (= 5.8.1)
+    - AppMetricaCoreUtils (= 5.8.1)
+    - AppMetricaEncodingUtils (= 5.8.1)
+    - AppMetricaHostState (= 5.8.1)
+    - AppMetricaLog (= 5.8.1)
+    - AppMetricaPlatform (= 5.8.1)
+    - AppMetricaProtobufUtils (= 5.8.1)
+    - AppMetricaStorageUtils (= 5.8.1)
+    - KSCrash/Recording (< 2.1.0, >= 2.0.0-rc.1)
+  - AppMetricaEncodingUtils (5.8.1):
+    - AppMetricaCoreUtils (= 5.8.1)
+    - AppMetricaLog (= 5.8.1)
+    - AppMetricaPlatform (= 5.8.1)
+  - AppMetricaFMDB (5.8.1)
+  - AppMetricaHostState (5.8.1):
+    - AppMetricaCoreUtils (= 5.8.1)
+    - AppMetricaLog (= 5.8.1)
+  - AppMetricaLog (5.8.1)
+  - AppMetricaNetwork (5.8.1):
+    - AppMetricaCoreUtils (= 5.8.1)
+    - AppMetricaLog (= 5.8.1)
+    - AppMetricaPlatform (= 5.8.1)
+  - AppMetricaPlatform (5.8.1):
+    - AppMetricaCoreUtils (= 5.8.1)
+    - AppMetricaLog (= 5.8.1)
+  - AppMetricaProtobuf (5.8.1)
+  - AppMetricaProtobufUtils (5.8.1):
+    - AppMetricaProtobuf (= 5.8.1)
+  - AppMetricaStorageUtils (5.8.1):
+    - AppMetricaCoreUtils (= 5.8.1)
+    - AppMetricaLog (= 5.8.1)
+  - AppMetricaWebKit (5.8.1):
+    - AppMetricaCore (= 5.8.1)
+    - AppMetricaCoreUtils (= 5.8.1)
+    - AppMetricaLog (= 5.8.1)
+  - BigoADS (4.2.3)
+  - BigoADSYandexMobileAdsAdapters (4.2.3.9):
+    - BigoADS (~> 4.2.3)
+    - YandexMobileAds (= 7.5.1)
+  - ChartboostSDK (9.7.0)
+  - ChartboostYandexMobileAdsAdapters (9.7.0.12):
+    - ChartboostSDK (~> 9.7.0)
+    - YandexMobileAds (= 7.5.1)
+  - DivKit (30.20.0):
+    - DivKit_LayoutKit (= 30.20.0)
+    - DivKit_Serialization (= 30.20.0)
+    - VGSL (~> 6.0)
+  - DivKit_LayoutKit (30.20.0):
+    - DivKit_LayoutKitInterface (= 30.20.0)
+    - VGSL (~> 6.0)
+  - DivKit_LayoutKitInterface (30.20.0):
+    - VGSL (~> 6.0)
+  - DivKit_Serialization (30.20.0):
+    - VGSL (~> 6.0)
+  - DivKitBinaryCompatibilityFacade (4.4.0):
+    - DivKit (~> 30.9)
   - Firebase/CoreOnly (11.2.0):
     - FirebaseCore (= 11.2.0)
   - Firebase/Messaging (11.2.0):
@@ -34,9 +123,12 @@ PODS:
   - Flutter (1.0.0)
   - flutter_local_notifications (0.0.1):
     - Flutter
+  - Google-Mobile-Ads-SDK (11.7.0):
+    - GoogleUserMessagingPlatform (>= 1.1)
   - GoogleDataTransport (10.1.0):
     - nanopb (~> 3.30910.0)
     - PromisesObjC (~> 2.4)
+  - GoogleUserMessagingPlatform (2.6.0)
   - GoogleUtilities/AppDelegateSwizzler (8.0.2):
     - GoogleUtilities/Environment
     - GoogleUtilities/Logger
@@ -61,6 +153,66 @@ PODS:
   - GoogleUtilities/UserDefaults (8.0.2):
     - GoogleUtilities/Logger
     - GoogleUtilities/Privacy
+  - GoogleYandexMobileAdsAdapters (11.7.0.3):
+    - Google-Mobile-Ads-SDK (~> 11.7.0)
+    - YandexMobileAds (= 7.5.1)
+  - InMobiSDK (10.7.5)
+  - InMobiYandexMobileAdsAdapters (10.7.5.2):
+    - InMobiSDK (~> 10.7.5)
+    - YandexMobileAds (= 7.5.1)
+  - IronSourceSDK (8.3.0.0)
+  - IronSourceYandexMobileAdsAdapters (8.3.0.2):
+    - IronSourceSDK (~> 8.3.0.0)
+    - YandexMobileAds (= 7.5.1)
+  - KSCrash/Core (2.0.0-rc.3)
+  - KSCrash/Recording (2.0.0-rc.3):
+    - KSCrash/RecordingCore
+  - KSCrash/RecordingCore (2.0.0-rc.3):
+    - KSCrash/Core
+  - MintegralAdSDK (7.6.9):
+    - MintegralAdSDK/BannerAd (= 7.6.9)
+    - MintegralAdSDK/BidBannerAd (= 7.6.9)
+    - MintegralAdSDK/BidInterstitialVideoAd (= 7.6.9)
+    - MintegralAdSDK/BidNativeAd (= 7.6.9)
+    - MintegralAdSDK/BidNewInterstitialAd (= 7.6.9)
+    - MintegralAdSDK/BidRewardVideoAd (= 7.6.9)
+    - MintegralAdSDK/InterstitialVideoAd (= 7.6.9)
+    - MintegralAdSDK/NativeAd (= 7.6.9)
+    - MintegralAdSDK/NewInterstitialAd (= 7.6.9)
+    - MintegralAdSDK/RewardVideoAd (= 7.6.9)
+  - MintegralAdSDK/BannerAd (7.6.9):
+    - MintegralAdSDK/NativeAd
+  - MintegralAdSDK/BidBannerAd (7.6.9):
+    - MintegralAdSDK/BannerAd
+    - MintegralAdSDK/BidNativeAd
+  - MintegralAdSDK/BidInterstitialVideoAd (7.6.9):
+    - MintegralAdSDK/BidNativeAd
+    - MintegralAdSDK/InterstitialVideoAd
+  - MintegralAdSDK/BidNativeAd (7.6.9):
+    - MintegralAdSDK/NativeAd
+  - MintegralAdSDK/BidNewInterstitialAd (7.6.9):
+    - MintegralAdSDK/BidNativeAd
+    - MintegralAdSDK/NewInterstitialAd
+  - MintegralAdSDK/BidRewardVideoAd (7.6.9):
+    - MintegralAdSDK/BidNativeAd
+    - MintegralAdSDK/RewardVideoAd
+  - MintegralAdSDK/InterstitialVideoAd (7.6.9):
+    - MintegralAdSDK/NativeAd
+  - MintegralAdSDK/NativeAd (7.6.9)
+  - MintegralAdSDK/NewInterstitialAd (7.6.9):
+    - MintegralAdSDK/InterstitialVideoAd
+    - MintegralAdSDK/NativeAd
+  - MintegralAdSDK/RewardVideoAd (7.6.9):
+    - MintegralAdSDK/NativeAd
+  - MintegralYandexMobileAdsAdapters (7.6.9.3):
+    - MintegralAdSDK (~> 7.6.9)
+    - YandexMobileAds (= 7.5.1)
+  - myTargetSDK (5.21.9):
+    - myTrackerSDK (~> 3.2.0)
+  - MyTargetYandexMobileAdsAdapters (5.21.7.2):
+    - myTargetSDK (~> 5.21.7)
+    - YandexMobileAds (= 7.5.1)
+  - myTrackerSDK (3.2.0)
   - nanopb (3.30910.0):
     - nanopb/decode (= 3.30910.0)
     - nanopb/encode (= 3.30910.0)
@@ -70,8 +222,6 @@ PODS:
     - Flutter
     - FlutterMacOS
   - PromisesObjC (2.4.0)
-  - realm (3.4.1):
-    - Flutter
   - share_plus (0.0.1):
     - Flutter
   - shared_preferences_foundation (0.0.1):
@@ -95,32 +245,130 @@ PODS:
     - sqlite3/fts5
     - sqlite3/perf-threadsafe
     - sqlite3/rtree
+  - StartAppSDK (4.10.4)
+  - StartAppYandexMobileAdsAdapters (4.10.4.3):
+    - StartAppSDK (~> 4.10.4)
+    - YandexMobileAds (= 7.5.1)
+  - UnityAds (4.12.3)
+  - UnityAdsYandexMobileAdsAdapters (4.12.2.3):
+    - UnityAds (~> 4.12.2)
+    - YandexMobileAds (= 7.5.1)
+  - VGSL (6.7.0):
+    - VGSLFundamentals (= 6.7.0)
+    - VGSLNetworking (= 6.7.0)
+    - VGSLUI (= 6.7.0)
+  - VGSLFundamentals (6.7.0)
+  - VGSLNetworking (6.7.0):
+    - VGSLFundamentals (= 6.7.0)
+    - VGSLUI (= 6.7.0)
+  - VGSLUI (6.7.0):
+    - VGSLFundamentals (= 6.7.0)
+  - VungleAds (7.4.1)
+  - VungleYandexMobileAdsAdapters (7.4.1.1):
+    - VungleAds (= 7.4.1)
+    - YandexMobileAds (= 7.5.1)
+  - yandex_mobileads (7.4.0):
+    - Flutter
+    - YandexMobileAds (~> 7.5.1)
+  - YandexMobileAds (7.5.1):
+    - AppMetricaCore (< 6.0.0, >= 5.0.0)
+    - AppMetricaCrashes (< 6.0.0, >= 5.0.0)
+    - DivKitBinaryCompatibilityFacade (= 4.4.0)
+  - YandexMobileAdsMediation (7.5.1):
+    - AppLovinYandexMobileAdsAdapters
+    - BigoADSYandexMobileAdsAdapters
+    - ChartboostYandexMobileAdsAdapters
+    - GoogleYandexMobileAdsAdapters
+    - InMobiYandexMobileAdsAdapters
+    - IronSourceYandexMobileAdsAdapters
+    - MintegralYandexMobileAdsAdapters
+    - MyTargetYandexMobileAdsAdapters
+    - StartAppYandexMobileAdsAdapters
+    - UnityAdsYandexMobileAdsAdapters
+    - VungleYandexMobileAdsAdapters
+    - YandexMobileAds (= 7.5.1)
 
 DEPENDENCIES:
+  - appmetrica_plugin (from `.symlinks/plugins/appmetrica_plugin/ios`)
   - firebase_core (from `.symlinks/plugins/firebase_core/ios`)
   - firebase_messaging (from `.symlinks/plugins/firebase_messaging/ios`)
   - Flutter (from `Flutter`)
   - flutter_local_notifications (from `.symlinks/plugins/flutter_local_notifications/ios`)
   - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/darwin`)
-  - realm (from `.symlinks/plugins/realm/ios`)
   - share_plus (from `.symlinks/plugins/share_plus/ios`)
   - shared_preferences_foundation (from `.symlinks/plugins/shared_preferences_foundation/darwin`)
   - sqlite3_flutter_libs (from `.symlinks/plugins/sqlite3_flutter_libs/ios`)
+  - yandex_mobileads (from `.symlinks/plugins/yandex_mobileads/ios`)
+  - YandexMobileAdsMediation (~> 7.5.1)
 
 SPEC REPOS:
   trunk:
+    - AppLovinSDK
+    - AppLovinYandexMobileAdsAdapters
+    - AppMetricaAdSupport
+    - AppMetricaAnalytics
+    - AppMetricaCore
+    - AppMetricaCoreExtension
+    - AppMetricaCoreUtils
+    - AppMetricaCrashes
+    - AppMetricaEncodingUtils
+    - AppMetricaFMDB
+    - AppMetricaHostState
+    - AppMetricaLog
+    - AppMetricaNetwork
+    - AppMetricaPlatform
+    - AppMetricaProtobuf
+    - AppMetricaProtobufUtils
+    - AppMetricaStorageUtils
+    - AppMetricaWebKit
+    - BigoADS
+    - BigoADSYandexMobileAdsAdapters
+    - ChartboostSDK
+    - ChartboostYandexMobileAdsAdapters
+    - DivKit
+    - DivKit_LayoutKit
+    - DivKit_LayoutKitInterface
+    - DivKit_Serialization
+    - DivKitBinaryCompatibilityFacade
     - Firebase
     - FirebaseCore
     - FirebaseCoreInternal
     - FirebaseInstallations
     - FirebaseMessaging
+    - Google-Mobile-Ads-SDK
     - GoogleDataTransport
+    - GoogleUserMessagingPlatform
     - GoogleUtilities
+    - GoogleYandexMobileAdsAdapters
+    - InMobiSDK
+    - InMobiYandexMobileAdsAdapters
+    - IronSourceSDK
+    - IronSourceYandexMobileAdsAdapters
+    - KSCrash
+    - MintegralAdSDK
+    - MintegralYandexMobileAdsAdapters
+    - myTargetSDK
+    - MyTargetYandexMobileAdsAdapters
+    - myTrackerSDK
     - nanopb
     - PromisesObjC
     - sqlite3
+    - StartAppSDK
+    - StartAppYandexMobileAdsAdapters
+    - UnityAds
+    - UnityAdsYandexMobileAdsAdapters
+    - VGSL
+    - VGSLFundamentals
+    - VGSLNetworking
+    - VGSLUI
+    - VungleAds
+    - VungleYandexMobileAdsAdapters
+    - YandexMobileAds
+    - YandexMobileAdsMediation
 
 EXTERNAL SOURCES:
+  appmetrica_plugin:
+    :path: ".symlinks/plugins/appmetrica_plugin/ios"
   firebase_core:
     :path: ".symlinks/plugins/firebase_core/ios"
   firebase_messaging:
@@ -131,16 +379,44 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/flutter_local_notifications/ios"
   path_provider_foundation:
     :path: ".symlinks/plugins/path_provider_foundation/darwin"
-  realm:
-    :path: ".symlinks/plugins/realm/ios"
   share_plus:
     :path: ".symlinks/plugins/share_plus/ios"
   shared_preferences_foundation:
     :path: ".symlinks/plugins/shared_preferences_foundation/darwin"
   sqlite3_flutter_libs:
     :path: ".symlinks/plugins/sqlite3_flutter_libs/ios"
+  yandex_mobileads:
+    :path: ".symlinks/plugins/yandex_mobileads/ios"
 
 SPEC CHECKSUMS:
+  AppLovinSDK: a892bbeff744749a8121bd863aa1399f7eef6ef1
+  AppLovinYandexMobileAdsAdapters: f5adcbbaaf68dac4b3e5a42d1b98272d56034527
+  appmetrica_plugin: 22d4d1eb9d070509fce428774b7f0d0686564010
+  AppMetricaAdSupport: da744703342f003d7766dd03a5a070cca0a591c4
+  AppMetricaAnalytics: 1778651a86e381827e8e663314ac8b99c5bcfb3f
+  AppMetricaCore: 50968d9a5673bce38b7bcdd9a6fc85be1ea1b1ac
+  AppMetricaCoreExtension: 594dc51a8986f539ea719d66e248d91e76d2502d
+  AppMetricaCoreUtils: 05977363327e0fb6c2898ef827635399f840e14f
+  AppMetricaCrashes: b3ed2de6df85577a488737aee0a8610eb8486c0f
+  AppMetricaEncodingUtils: 5fd1f40e165cf0ec30ae01bba48ffcfaab2fcc2b
+  AppMetricaFMDB: 230a58d091733aa61d1a0bd9c459ff230b2c4572
+  AppMetricaHostState: 64392a6172c06fa0e5eff4232b49b0c5175c995f
+  AppMetricaLog: 7781a25e26594ab2b291785670a6410f1968bfa8
+  AppMetricaNetwork: 77b517922375ebe6cd0c0656967df6d7130040f8
+  AppMetricaPlatform: 4b5ae79e46c9457a6ed6c129a6ae702f1694c532
+  AppMetricaProtobuf: 17c8a9c35967580cea6f7215ca9abd6024f59477
+  AppMetricaProtobufUtils: 658c8608b2edb5c7d90463df72a0a80e715bfcb6
+  AppMetricaStorageUtils: 56a5345e7b82e7d778708b973fdcf0c657b49aca
+  AppMetricaWebKit: b15a5c78fdeaca729a5b218509459d17d357b293
+  BigoADS: dc47625e5eb8f83b651a75788973d04acd655d62
+  BigoADSYandexMobileAdsAdapters: 2428a61b89da4b12568aba59ce53271f2f190a2b
+  ChartboostSDK: 0cd093c90a5a21c89783fe5be486e511fb2dbfc8
+  ChartboostYandexMobileAdsAdapters: debd45880271faa0542085e9a53e6cb9f3eb8067
+  DivKit: 0d0206d3dca8066bb0c95dd2e91be622fe103cea
+  DivKit_LayoutKit: c1f04d945ff8efc1a252354d0dadcb6ed327b6e4
+  DivKit_LayoutKitInterface: 20c39c5758e44483ed9482c79819750de66cec16
+  DivKit_Serialization: 421d343184b5a696ff4c54bd92f0bc675f5f20e8
+  DivKitBinaryCompatibilityFacade: 67da4a55a1aa874a85b052347467d64692c16a05
   Firebase: 98e6bf5278170668a7983e12971a66b2cd57fc8c
   firebase_core: 2bedc3136ec7c7b8561c6123ed0239387b53f2af
   firebase_messaging: 15d114e1a41fc31e4fbabcd48d765a19eec94a38
@@ -150,17 +426,42 @@ SPEC CHECKSUMS:
   FirebaseMessaging: c9ec7b90c399c7a6100297e9d16f8a27fc7f7152
   Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
   flutter_local_notifications: 4cde75091f6327eb8517fa068a0a5950212d2086
+  Google-Mobile-Ads-SDK: 204b517c9765169144cf39763c7f5d23c57a9db0
   GoogleDataTransport: aae35b7ea0c09004c3797d53c8c41f66f219d6a7
+  GoogleUserMessagingPlatform: 0c3a08353e53ce8c2feab7addd0b652cde522450
   GoogleUtilities: 26a3abef001b6533cf678d3eb38fd3f614b7872d
+  GoogleYandexMobileAdsAdapters: 166e48442d6e9a3b0300472df88a6e623f259bd0
+  InMobiSDK: 728c861e41cd738eaf0a26b87f0e3f945e8c5602
+  InMobiYandexMobileAdsAdapters: ed0834745c80a5ec801ece1aff3c4f1232560b65
+  IronSourceSDK: 2dbbc8b9d20cbc4a60901e07e0aa5f3bf6a15d9a
+  IronSourceYandexMobileAdsAdapters: c711ad49625859c775a91bca6b4efe9575a63e4b
+  KSCrash: 6104c0ff6df6818d69b706f72c5152f0ac2c2236
+  MintegralAdSDK: 229e75c801be1302fb1aeac4249923234bfc480a
+  MintegralYandexMobileAdsAdapters: d59eda0ebbd896cd034f55f556a22447e3199760
+  myTargetSDK: abed622e4308161fb23c16f9937a097332d9b4e6
+  MyTargetYandexMobileAdsAdapters: 60c2c0d62665825a11545deb1b96255475fb1a0b
+  myTrackerSDK: e1d9cf32afae080a91bf46ef7e48e43e1644d884
   nanopb: fad817b59e0457d11a5dfbde799381cd727c1275
   path_provider_foundation: 2b6b4c569c0fb62ec74538f866245ac84301af46
   PromisesObjC: f5707f49cb48b9636751c5b2e7d227e43fba9f47
-  realm: 5ec508942a1e324cb6d2b313e73aba633792f898
   share_plus: 8875f4f2500512ea181eef553c3e27dba5135aad
   shared_preferences_foundation: fcdcbc04712aee1108ac7fda236f363274528f78
   sqlite3: 0bb0e6389d824e40296f531b858a2a0b71c0d2fb
   sqlite3_flutter_libs: c00457ebd31e59fa6bb830380ddba24d44fbcd3b
+  StartAppSDK: dacab2f76b584fa2c04c25b65fb7a84f394c7030
+  StartAppYandexMobileAdsAdapters: ae2f6fbac92d675220ae3f1eee2025eaface383f
+  UnityAds: 32596c2f76856d643b50d3da51c47a552b80d5a4
+  UnityAdsYandexMobileAdsAdapters: 152e1be3742fc13db2dabbe095c1b78a8dc7f074
+  VGSL: 51225872b4a7ad1689b984a7be46468b6a636956
+  VGSLFundamentals: f403d8bb1cecd74b764342de7d32c01288afa1f4
+  VGSLNetworking: 9fb2c6b1f99eea4b52933b33c45b93c5f66baa9b
+  VGSLUI: 6e690dfc294a4e878f67dfd39055f0917e9672ba
+  VungleAds: 97140121d0b909891eb217d1c102a194601da607
+  VungleYandexMobileAdsAdapters: f44ff963a45e73dd4097cc75d8509714e9b817c0
+  yandex_mobileads: 553ee2e66551f1e59b8ee4c2be548cd0132ae939
+  YandexMobileAds: 20c4a71cd50876b6d1f24fe394114476e9944efc
+  YandexMobileAdsMediation: a338c220e2712ce4dc3984abb2e7d60d781c4754
 
-PODFILE CHECKSUM: a57f30d18f102dd3ce366b1d62a55ecbef2158e5
+PODFILE CHECKSUM: 5950b41792635740cf6c7f60a67f88aa51e4ea5d
 
 COCOAPODS: 1.15.2

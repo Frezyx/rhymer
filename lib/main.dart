@@ -1,3 +1,4 @@
+import 'package:appmetrica_plugin/appmetrica_plugin.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -16,15 +17,19 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await dotenv.load(fileName: ".env");
 
+  final appmetricaKey = dotenv.env["APPMETRICA_KEY"];
+  final apiUrl = dotenv.env['API_URL'];
+
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+
+  if (appmetricaKey != null) {
+    await AppMetrica.activate(AppMetricaConfig(appmetricaKey));
+  }
 
   final prefs = await _initPrefs();
   final database = AppDatabase();
   final talker = TalkerFlutter.init();
-  final apiClient = RhymerApiClient.create(
-    apiUrl: dotenv.env['API_URL'],
-    talker: talker,
-  );
+  final apiClient = RhymerApiClient.create(apiUrl: apiUrl, talker: talker);
 
   Bloc.observer = TalkerBlocObserver(talker: talker);
 
