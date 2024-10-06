@@ -22,13 +22,13 @@ class RhymeListCard extends StatelessWidget {
     final theme = Theme.of(context);
     return BaseConatiner(
       margin: const EdgeInsets.symmetric(horizontal: 16).copyWith(bottom: 10),
+      padding: EdgeInsets.only(left: 12),
       width: double.infinity,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Row(
             children: [
-              if (id != null) Text(id.toString()),
               if (sourceWord != null) ...[
                 Text(
                   sourceWord!,
