@@ -1,5 +1,5 @@
-import 'package:rhymer/api/models/rhymes.dart';
+import 'package:rhymer/api/models/models.dart';
 
 abstract interface class RhymesRepositoryI {
-  Future<Rhymes> fetchRhymesList(String rhyme);
+  Future<RhymesDto> fetchRhymesList(String rhyme);
 }

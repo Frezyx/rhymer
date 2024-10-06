@@ -44,6 +44,19 @@ final class RhymesListLoaded extends RhymesListState {
   }
 }
 
+final class RhymesStressedCharsSelection extends RhymesListState {
+  const RhymesStressedCharsSelection({
+    required this.stressedChars,
+    required this.query,
+  });
+
+  final String query;
+  final List<String> stressedChars;
+
+  @override
+  List<Object> get props => super.props..addAll([stressedChars, query]);
+}
+
 final class RhymesListFailure extends RhymesListState {
   const RhymesListFailure(this.error);
   final Object error;

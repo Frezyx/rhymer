@@ -23,7 +23,7 @@ class _RhymerAppState extends State<RhymerApp> {
 
   @override
   Widget build(BuildContext context) {
-    final repositoryContainer = RepositoryContainer.dev(
+    final repositoryContainer = RepositoryContainer.prod(
       config: widget.config,
     );
 

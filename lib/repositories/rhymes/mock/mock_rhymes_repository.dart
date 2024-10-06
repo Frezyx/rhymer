@@ -1,14 +1,14 @@
 import 'dart:math';
 
-import 'package:rhymer/api/models/rhymes.dart';
+import 'package:rhymer/api/models/models.dart';
 import 'package:rhymer/repositories/rhymes/rhymes.dart';
 
 class MockRhymesRepository implements RhymesRepositoryI {
   @override
-  Future<Rhymes> fetchRhymesList(String rhyme) async {
+  Future<RhymesDto> fetchRhymesList(String rhyme) async {
     await _mockDelay();
-    return Rhymes(
-      words: List.generate(
+    return RhymesDto(
+      rhymes: List.generate(
         20,
         (index) =>
             (Random(rhyme.hashCode).nextInt(10000) * (index + 1)).toString(),

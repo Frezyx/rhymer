@@ -22,19 +22,19 @@ class _RhymerApiClient implements RhymerApiClient {
   final ParseErrorLogger? errorLogger;
 
   @override
-  Future<Rhymes> getRhymesList(String word) async {
+  Future<RhymesDto> getRhymesList(String word) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{r'word': word};
+    final queryParameters = <String, dynamic>{r'query': word};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<Rhymes>(Options(
+    final _options = _setStreamType<RhymesDto>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
         .compose(
           _dio.options,
-          '/rhymes/get',
+          '/rhymes',
           queryParameters: queryParameters,
           data: _data,
         )
@@ -44,9 +44,9 @@ class _RhymerApiClient implements RhymerApiClient {
           baseUrl,
         )));
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late Rhymes _value;
+    late RhymesDto _value;
     try {
-      _value = Rhymes.fromJson(_result.data!);
+      _value = RhymesDto.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;

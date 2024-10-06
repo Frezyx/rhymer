@@ -3,7 +3,6 @@ import 'dart:developer';
 
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:rhymer/api/models/models.dart';
 import 'package:rhymer/repositories/favorites/favorites.dart';
 import 'package:rhymer/repositories/history/history.dart';
 import 'package:rhymer/repositories/rhymes/rhymes.dart';
@@ -19,13 +18,13 @@ class RhymesListBloc extends Bloc<RhymesListEvent, RhymesListState> {
     required FavoritesRepositoryI favoritesRepositoryInterface,
   })  : _historyRepository = historyRepository,
         _favoritesRepository = favoritesRepositoryInterface,
-        _rhymesRepositoryI = rhymesRepository,
+        _rhymesRepository = rhymesRepository,
         super(RhymesListInitial()) {
     on<SearchRhymes>(_onSearch);
     on<ToggleFavoriteRhymes>(_onToggleFavorite);
   }
 
-  final RhymesRepositoryI _rhymesRepositoryI;
+  final RhymesRepositoryI _rhymesRepository;
   final HistoryRepositoryI _historyRepository;
   final FavoritesRepositoryI _favoritesRepository;
 
@@ -35,10 +34,26 @@ class RhymesListBloc extends Bloc<RhymesListEvent, RhymesListState> {
   ) async {
     try {
       emit(RhymesListLoading());
-      final rhymes = await _rhymesRepositoryI.fetchRhymesList(event.query);
+      final rhymesDto = await _rhymesRepository.fetchRhymesList(event.query);
+      final words = rhymesDto.rhymes;
+      if (words == null || words.isEmpty) {
+        final stressedChars = rhymesDto.stressedChars;
+        if (stressedChars != null && stressedChars.isNotEmpty) {
+          emit(
+            RhymesStressedCharsSelection(
+              stressedChars: stressedChars,
+              query: event.query,
+            ),
+          );
+          return;
+        }
+        return;
+      }
+
+      final rhymes = Rhymes(rhymes: words);
       final createHistoryRhyme = CreateHistoryRhyme.create(
         queryWord: event.query,
-        words: rhymes.words,
+        words: words,
       );
       await _historyRepository.createRhyme(createHistoryRhyme);
       final favoriteRhymes = await _favoritesRepository.getRhymesList();
@@ -68,7 +83,7 @@ class RhymesListBloc extends Bloc<RhymesListEvent, RhymesListState> {
       final createModel = CreateFavoriteRhyme.create(
         queryWord: prevState.query,
         favoriteWord: event.favoriteWord,
-        words: event.rhymes.words,
+        words: event.rhymes.rhymes,
       );
       await _favoritesRepository.createOrDeleteRhyme(createModel);
       final favorites = await _favoritesRepository.getRhymesList();
