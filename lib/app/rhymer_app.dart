@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rhymer/app/app.dart';
+import 'package:rhymer/app/repository_container.dart';
 import 'package:rhymer/bloc/theme/theme_cubit.dart';
 import 'package:rhymer/router/router.dart';
 import 'package:rhymer/ui/ui.dart';
@@ -22,8 +23,13 @@ class _RhymerAppState extends State<RhymerApp> {
 
   @override
   Widget build(BuildContext context) {
+    final repositoryContainer = RepositoryContainer.prod(
+      config: widget.config,
+    );
+
     return AppInitializer(
       config: widget.config,
+      repositoryContainer: repositoryContainer,
       child: BlocBuilder<ThemeCubit, ThemeState>(
         builder: (context, state) {
           return MaterialApp.router(
