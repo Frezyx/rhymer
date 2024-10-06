@@ -45,6 +45,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                     final rhyme = state.rhymes[index];
                     return RhymeListCard(
                       isFavorite: true,
+                      id: rhyme.id,
                       rhyme: rhyme.favoriteWord,
                       sourceWord: rhyme.queryWord,
                       onTap: () => _toggleFavoriteRhyme(context, rhyme),
@@ -64,7 +65,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
 
   void _toggleFavoriteRhyme(BuildContext context, FavoriteRhyme rhyme) {
     BlocProvider.of<FavoriteRhymesBloc>(context).add(
-      ToggleFavoriteRhyme(rhyme),
+      DeleteFavoriteRhyme(rhyme),
     );
   }
 }

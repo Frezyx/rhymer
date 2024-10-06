@@ -61,6 +61,7 @@ class AppInitializer extends StatelessWidget {
           ),
           BlocProvider(
             create: (context) => FavoriteRhymesBloc(
+              talker: config.talker,
               favoritesRepository: context.read<FavoritesRepositoryI>(),
             ),
           ),

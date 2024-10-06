@@ -4,12 +4,14 @@ import 'package:rhymer/ui/ui.dart';
 class RhymeListCard extends StatelessWidget {
   const RhymeListCard({
     super.key,
+    this.id,
     this.isFavorite = false,
     required this.rhyme,
     this.sourceWord,
     required this.onTap,
   });
 
+  final int? id;
   final String rhyme;
   final String? sourceWord;
   final bool isFavorite;
@@ -26,6 +28,7 @@ class RhymeListCard extends StatelessWidget {
         children: [
           Row(
             children: [
+              if (id != null) Text(id.toString()),
               if (sourceWord != null) ...[
                 Text(
                   sourceWord!,
