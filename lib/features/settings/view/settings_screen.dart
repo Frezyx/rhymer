@@ -22,6 +22,7 @@ class SettingsScreen extends StatelessWidget {
           const SliverAppBar(
             snap: true,
             floating: true,
+            centerTitle: true,
             title: Text('Настройки'),
             elevation: 0,
             surfaceTintColor: Colors.transparent,

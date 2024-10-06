@@ -6,7 +6,7 @@ class BaseConatiner extends StatelessWidget {
     required this.child,
     this.width,
     this.margin,
-    this.padding = const EdgeInsets.only(left: 12),
+    this.padding = const EdgeInsets.all(8),
   });
 
   final double? width;

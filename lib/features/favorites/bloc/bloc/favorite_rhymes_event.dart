@@ -9,8 +9,8 @@ sealed class FavoriteRhymesEvent extends Equatable {
 
 final class LoadFavoriteRhymes extends FavoriteRhymesEvent {}
 
-final class ToggleFavoriteRhyme extends FavoriteRhymesEvent {
-  const ToggleFavoriteRhyme(this.rhyme);
+final class DeleteFavoriteRhyme extends FavoriteRhymesEvent {
+  const DeleteFavoriteRhyme(this.rhyme);
 
   final FavoriteRhyme rhyme;
 
