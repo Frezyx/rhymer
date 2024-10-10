@@ -2,16 +2,37 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 import 'package:rhymer/bloc/theme/theme_cubit.dart';
 import 'package:rhymer/features/history/bloc/history_rhymes_bloc.dart';
 import 'package:rhymer/features/settings/widgets/widgets.dart';
 import 'package:rhymer/ui/ui.dart';
 
 @RoutePage()
-class SettingsScreen extends StatelessWidget {
+class SettingsScreen extends StatefulWidget {
   const SettingsScreen({
     super.key,
   });
+
+  @override
+  State<SettingsScreen> createState() => _SettingsScreenState();
+}
+
+class _SettingsScreenState extends State<SettingsScreen> {
+  String? _appInfoString;
+
+  @override
+  void initState() {
+    _loadAppVersion();
+    super.initState();
+  }
+
+  Future<void> _loadAppVersion() async {
+    final packageInfo = await PackageInfo.fromPlatform();
+    _appInfoString =
+        '${packageInfo.appName} v${packageInfo.version} (${packageInfo.buildNumber})';
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -67,6 +88,20 @@ class SettingsScreen extends StatelessWidget {
           ),
         ],
       ),
+      bottomNavigationBar: _appInfoString != null
+          ? Padding(
+              padding: const EdgeInsets.all(16),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    _appInfoString!,
+                    style: TextStyle(color: Colors.grey),
+                  ),
+                ],
+              ),
+            )
+          : null,
     );
   }
 

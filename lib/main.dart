@@ -26,7 +26,13 @@ Future<void> main() async {
     talker: talker,
   );
 
-  Bloc.observer = TalkerBlocObserver(talker: talker);
+  Bloc.observer = TalkerBlocObserver(
+    talker: talker,
+    settings: TalkerBlocLoggerSettings(
+      printEventFullData: false,
+      printStateFullData: false,
+    ),
+  );
 
   final config = AppConfig(
     database: database,

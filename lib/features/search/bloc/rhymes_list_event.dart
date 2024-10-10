@@ -8,12 +8,16 @@ sealed class RhymesListEvent extends Equatable {
 }
 
 class SearchRhymes extends RhymesListEvent {
-  const SearchRhymes({required this.query});
+  const SearchRhymes({
+    required this.query,
+    this.addToHistory = true,
+  });
 
   final String query;
+  final bool addToHistory;
 
   @override
-  List<Object?> get props => super.props..addAll([query]);
+  List<Object?> get props => super.props..addAll([query, addToHistory]);
 }
 
 class ToggleFavoriteRhymes extends RhymesListEvent {

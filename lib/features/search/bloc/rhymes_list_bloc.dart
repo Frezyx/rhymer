@@ -51,11 +51,14 @@ class RhymesListBloc extends Bloc<RhymesListEvent, RhymesListState> {
       }
 
       final rhymes = Rhymes(rhymes: words);
-      final createHistoryRhyme = CreateHistoryRhyme.create(
-        queryWord: event.query,
-        words: words,
-      );
-      await _historyRepository.createRhyme(createHistoryRhyme);
+      if (event.addToHistory) {
+        final createHistoryRhyme = CreateHistoryRhyme.create(
+          queryWord: event.query,
+          words: words,
+        );
+        await _historyRepository.createRhyme(createHistoryRhyme);
+      }
+
       final favoriteRhymes = await _favoritesRepository.getRhymesList();
       emit(
         RhymesListLoaded(

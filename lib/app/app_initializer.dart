@@ -11,6 +11,7 @@ import 'package:rhymer/repositories/history/history_repository_interface.dart';
 import 'package:rhymer/repositories/notifications/notifications.dart';
 import 'package:rhymer/repositories/rhymes/rhymes.dart';
 import 'package:rhymer/repositories/settings/settings.dart';
+import 'package:talker_flutter/talker_flutter.dart';
 
 class AppInitializer extends StatelessWidget {
   const AppInitializer({
@@ -28,6 +29,7 @@ class AppInitializer extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiRepositoryProvider(
       providers: [
+        RepositoryProvider<Talker>(create: (context) => config.talker),
         RepositoryProvider<HistoryRepositoryI>(
           create: (context) => repositoryContainer.historyRepository,
         ),

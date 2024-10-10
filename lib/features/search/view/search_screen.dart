@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:developer';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +11,7 @@ import 'package:rhymer/repositories/favorites/favorites.dart';
 import 'package:rhymer/repositories/notifications/notifications.dart';
 import 'package:rhymer/repositories/rhymes/models/models.dart';
 import 'package:rhymer/ui/ui.dart';
+import 'package:talker_flutter/talker_flutter.dart';
 
 @RoutePage()
 class SearchScreen extends StatefulWidget {
@@ -32,10 +32,11 @@ class _SearchScreenState extends State<SearchScreen> {
   }
 
   Future<void> _initNotifications() async {
+    final talker = context.read<Talker>();
     final repository = context.read<NotificationsRepositoryI>();
     final result = await repository.requestPermisison();
     if (result) {
-      repository.getToken().then((token) => log(token ?? '...'));
+      repository.getToken().then((token) => talker.info(token ?? '...'));
     }
   }
 
@@ -68,26 +69,9 @@ class _SearchScreenState extends State<SearchScreen> {
                           color: theme.hintColor.withOpacity(0.1),
                           borderRadius: BorderRadius.circular(12),
                         ),
-                        child: TextField(
+                        child: SearchTextField(
                           controller: _searchController,
-                          textInputAction: TextInputAction.search,
                           onSubmitted: (value) => _onTapSearch(context),
-                          decoration: InputDecoration(
-                            hintText: 'Начни вводить слово...',
-                            hintStyle: TextStyle(
-                              color: theme.hintColor.withOpacity(0.5),
-                              fontWeight: FontWeight.w400,
-                            ),
-                            contentPadding: const EdgeInsets.symmetric(
-                              horizontal: 12,
-                            ),
-                            enabledBorder: const OutlineInputBorder(
-                              borderSide: BorderSide.none,
-                            ),
-                            border: const OutlineInputBorder(
-                              borderSide: BorderSide.none,
-                            ),
-                          ),
                         ),
                       ),
                     ),
@@ -122,20 +106,12 @@ class _SearchScreenState extends State<SearchScreen> {
                 final history = state.rhymes;
                 return SizedBox(
                   height: 58,
-                  child: ListView.separated(
-                    padding: const EdgeInsets.only(left: 16),
-                    scrollDirection: Axis.horizontal,
-                    itemCount: history.length,
-                    separatorBuilder: (context, index) => const SizedBox(
-                      width: 8,
+                  child: RhymesHistoryCarousel(
+                    history: history,
+                    onItemTap: (rhyme) => _showHistoryRhymes(
+                      context,
+                      rhyme.queryWord,
                     ),
-                    itemBuilder: (context, index) {
-                      final rhymes = history[index];
-                      return RhymeHistoryCarouselCard(
-                        word: rhymes.queryWord,
-                        rhymes: rhymes.words,
-                      );
-                    },
                   ),
                 );
               },
@@ -181,13 +157,23 @@ class _SearchScreenState extends State<SearchScreen> {
                 );
               }
               return const SliverFillRemaining(
-                child: Center(child: CircularProgressIndicator()),
+                child: Center(child: PlatformProgressIndicator()),
               );
             },
           )
         ],
       ),
     );
+  }
+
+  void _showHistoryRhymes(BuildContext context, String query) {
+    AutoTabsRouter.of(context).setActiveIndex(0);
+    context.read<RhymesListBloc>().add(
+          SearchRhymes(
+            query: query,
+            addToHistory: false,
+          ),
+        );
   }
 
   void _onTapSearch(BuildContext context) {
