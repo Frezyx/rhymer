@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rhymer/features/favorites/bloc/bloc/favorite_rhymes_bloc.dart';
+import 'package:rhymer/features/favorites/widgets/widgets.dart';
 import 'package:rhymer/repositories/favorites/favorites.dart';
 import 'package:rhymer/ui/ui.dart';
 
@@ -30,6 +31,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
           const SliverAppBar(
             snap: true,
             floating: true,
+            centerTitle: true,
             title: Text('Избранное'),
             elevation: 0,
             surfaceTintColor: Colors.transparent,
@@ -38,12 +40,17 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
           BlocBuilder<FavoriteRhymesBloc, FavoriteRhymesState>(
             builder: (context, state) {
               if (state is FavoriteRhymesLoaded) {
+                final rhymes = state.rhymes;
+                if (rhymes.isEmpty) {
+                  return SliverFillRemaining(child: EmptyFavoritesBanner());
+                }
                 return SliverList.builder(
-                  itemCount: state.rhymes.length,
+                  itemCount: rhymes.length,
                   itemBuilder: (context, index) {
-                    final rhyme = state.rhymes[index];
+                    final rhyme = rhymes[index];
                     return RhymeListCard(
                       isFavorite: true,
+                      id: rhyme.id,
                       rhyme: rhyme.favoriteWord,
                       sourceWord: rhyme.queryWord,
                       onTap: () => _toggleFavoriteRhyme(context, rhyme),
@@ -52,7 +59,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                 );
               }
               return const SliverFillRemaining(
-                child: CircularProgressIndicator(),
+                child: PlatformProgressIndicator(),
               );
             },
           ),
@@ -63,7 +70,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
 
   void _toggleFavoriteRhyme(BuildContext context, FavoriteRhyme rhyme) {
     BlocProvider.of<FavoriteRhymesBloc>(context).add(
-      ToggleFavoriteRhyme(rhyme),
+      DeleteFavoriteRhyme(rhyme),
     );
   }
 }

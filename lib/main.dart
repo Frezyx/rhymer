@@ -31,7 +31,13 @@ Future<void> main() async {
   final talker = TalkerFlutter.init();
   final apiClient = RhymerApiClient.create(apiUrl: apiUrl, talker: talker);
 
-  Bloc.observer = TalkerBlocObserver(talker: talker);
+  Bloc.observer = TalkerBlocObserver(
+    talker: talker,
+    settings: TalkerBlocLoggerSettings(
+      printEventFullData: false,
+      printStateFullData: false,
+    ),
+  );
 
   final config = AppConfig(
     database: database,

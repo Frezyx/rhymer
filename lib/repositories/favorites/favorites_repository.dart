@@ -28,16 +28,23 @@ class FavoritesRepository implements FavoritesRepositoryI {
       return;
     }
     // Если записи нет, создаём новую
-    await _createRhyme(rhyme);
+    await create(rhyme);
   }
 
-  Future<void> _createRhyme(CreateFavoriteRhyme rhyme) async {
-    await db.into(db.favoriteRhymeModel).insert(rhyme.toCompanion());
+  @override
+  Future<int> create(CreateFavoriteRhyme rhyme) async {
+    return await db.into(db.favoriteRhymeModel).insert(rhyme.toCompanion());
   }
 
   @override
   Future<void> clear() async {
     await db.delete(db.favoriteRhymeModel).go();
+  }
+
+  @override
+  Future<void> delete(int id) async {
+    final delete = db.delete(db.favoriteRhymeModel);
+    await (delete..where((e) => e.id.equals(id))).go();
   }
 
   Expression<bool> _uniqFavoriteExpr(
