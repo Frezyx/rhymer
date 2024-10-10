@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:developer';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +11,7 @@ import 'package:rhymer/repositories/favorites/favorites.dart';
 import 'package:rhymer/repositories/notifications/notifications.dart';
 import 'package:rhymer/repositories/rhymes/models/models.dart';
 import 'package:rhymer/ui/ui.dart';
+import 'package:talker_flutter/talker_flutter.dart';
 
 @RoutePage()
 class SearchScreen extends StatefulWidget {
@@ -32,10 +32,11 @@ class _SearchScreenState extends State<SearchScreen> {
   }
 
   Future<void> _initNotifications() async {
+    final talker = context.read<Talker>();
     final repository = context.read<NotificationsRepositoryI>();
     final result = await repository.requestPermisison();
     if (result) {
-      repository.getToken().then((token) => log(token ?? '...'));
+      repository.getToken().then((token) => talker.info(token ?? '...'));
     }
   }
 
