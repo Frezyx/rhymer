@@ -106,20 +106,12 @@ class _SearchScreenState extends State<SearchScreen> {
                 final history = state.rhymes;
                 return SizedBox(
                   height: 58,
-                  child: ListView.separated(
-                    padding: const EdgeInsets.only(left: 16),
-                    scrollDirection: Axis.horizontal,
-                    itemCount: history.length,
-                    separatorBuilder: (context, index) => const SizedBox(
-                      width: 8,
+                  child: RhymesHistoryCarousel(
+                    history: history,
+                    onItemTap: (rhyme) => _openSearchScreen(
+                      context,
+                      rhyme.queryWord,
                     ),
-                    itemBuilder: (context, index) {
-                      final rhymes = history[index];
-                      return RhymeHistoryCarouselCard(
-                        word: rhymes.queryWord,
-                        rhymes: rhymes.words,
-                      );
-                    },
                   ),
                 );
               },
@@ -172,6 +164,11 @@ class _SearchScreenState extends State<SearchScreen> {
         ],
       ),
     );
+  }
+
+  void _openSearchScreen(BuildContext context, String query) {
+    AutoTabsRouter.of(context).setActiveIndex(0);
+    context.read<RhymesListBloc>().add(SearchRhymes(query: query));
   }
 
   void _onTapSearch(BuildContext context) {
