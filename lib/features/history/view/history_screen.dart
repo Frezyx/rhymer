@@ -72,6 +72,11 @@ class _HistoryScreenState extends State<HistoryScreen> {
 
   void _openSearchScreen(BuildContext context, String query) {
     AutoTabsRouter.of(context).setActiveIndex(0);
-    context.read<RhymesListBloc>().add(SearchRhymes(query: query));
+    context.read<RhymesListBloc>().add(
+          SearchRhymes(
+            query: query,
+            addToHistory: false,
+          ),
+        );
   }
 }

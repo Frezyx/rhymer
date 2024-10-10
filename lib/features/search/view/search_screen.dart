@@ -108,7 +108,7 @@ class _SearchScreenState extends State<SearchScreen> {
                   height: 58,
                   child: RhymesHistoryCarousel(
                     history: history,
-                    onItemTap: (rhyme) => _openSearchScreen(
+                    onItemTap: (rhyme) => _showHistoryRhymes(
                       context,
                       rhyme.queryWord,
                     ),
@@ -166,9 +166,14 @@ class _SearchScreenState extends State<SearchScreen> {
     );
   }
 
-  void _openSearchScreen(BuildContext context, String query) {
+  void _showHistoryRhymes(BuildContext context, String query) {
     AutoTabsRouter.of(context).setActiveIndex(0);
-    context.read<RhymesListBloc>().add(SearchRhymes(query: query));
+    context.read<RhymesListBloc>().add(
+          SearchRhymes(
+            query: query,
+            addToHistory: false,
+          ),
+        );
   }
 
   void _onTapSearch(BuildContext context) {
