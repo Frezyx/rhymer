@@ -36,14 +36,14 @@ target 'Runner' do
     inherit! :search_paths
   end
 
-  pod 'YandexMobileAdsMediation', '7.1.1'
+  # pod 'YandexMobileAdsMediation', '7.1.1'
 end
 
 post_install do |installer|
   installer.pods_project.targets.each do |target|
     flutter_additional_ios_build_settings(target)
-    target.build_configurations.each do |config|
-      config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '13.0'
-    end
+    # target.build_configurations.each do |config|
+    #   config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '13.0'
+    # end
   end
 end
