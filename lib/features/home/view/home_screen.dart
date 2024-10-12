@@ -22,7 +22,7 @@ class _HomeScreenState extends State<HomeScreen> {
       isBannerAlreadyCreated = true;
     });
     // if banner was already created you can just call:
-    // banner.loadAd(adRequest: const AdRequest());
+    banner.loadAd(adRequest: const AdRequest());
   }
 
   BannerAdSize _getAdSize() {
@@ -73,30 +73,39 @@ class _HomeScreenState extends State<HomeScreen> {
       ],
       builder: (context, child) {
         final tabsRouter = AutoTabsRouter.of(context);
-        return Scaffold(
-          body: child,
-          bottomNavigationBar: PlatformNavigationBar(
-            tabsRouter: tabsRouter,
-            onSelect: (index) => _openPage(index, tabsRouter),
-            items: <BottomNavigationBarItem>[
-              BottomNavigationBarItem(
-                icon: Icon(Icons.search),
-                label: 'Поиск',
+        return Stack(
+          children: [
+            Scaffold(
+              body: child,
+              bottomNavigationBar: PlatformNavigationBar(
+                tabsRouter: tabsRouter,
+                onSelect: (index) => _openPage(index, tabsRouter),
+                items: <BottomNavigationBarItem>[
+                  BottomNavigationBarItem(
+                    icon: Icon(Icons.search),
+                    label: 'Поиск',
+                  ),
+                  BottomNavigationBarItem(
+                    icon: Icon(Icons.favorite),
+                    label: 'Избранное',
+                  ),
+                  BottomNavigationBarItem(
+                    icon: Icon(Icons.history),
+                    label: 'История',
+                  ),
+                  BottomNavigationBarItem(
+                    icon: Icon(Icons.settings),
+                    label: 'Настройки',
+                  ),
+                ],
               ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.favorite),
-                label: 'Избранное',
+            ),
+            if (isBannerAlreadyCreated)
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: AdWidget(bannerAd: banner),
               ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.history),
-                label: 'История',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.settings),
-                label: 'Настройки',
-              ),
-            ],
-          ),
+          ],
         );
       },
     );

@@ -40,7 +40,7 @@ dependencies:
   talker_bloc_logger: 4.4.1
 
   # Vendors
-  yandex_mobileads: ^7.4.0
+  yandex_mobileads: 7.1.0
   appmetrica_plugin: ^3.1.0
 
   # Platform
