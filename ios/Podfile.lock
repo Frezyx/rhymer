@@ -1,4 +1,81 @@
 PODS:
+  - appmetrica_plugin (3.1.0):
+    - AppMetricaAnalytics (~> 5.8)
+    - Flutter
+  - AppMetricaAdSupport (5.8.1):
+    - AppMetricaCore (= 5.8.1)
+    - AppMetricaCoreExtension (= 5.8.1)
+  - AppMetricaAnalytics (5.8.1):
+    - AppMetricaAdSupport (= 5.8.1)
+    - AppMetricaCore (= 5.8.1)
+    - AppMetricaCrashes (= 5.8.1)
+    - AppMetricaWebKit (= 5.8.1)
+  - AppMetricaCore (5.8.1):
+    - AppMetricaCoreUtils (= 5.8.1)
+    - AppMetricaEncodingUtils (= 5.8.1)
+    - AppMetricaFMDB (= 5.8.1)
+    - AppMetricaHostState (= 5.8.1)
+    - AppMetricaLog (= 5.8.1)
+    - AppMetricaNetwork (= 5.8.1)
+    - AppMetricaPlatform (= 5.8.1)
+    - AppMetricaProtobuf (= 5.8.1)
+    - AppMetricaProtobufUtils (= 5.8.1)
+    - AppMetricaStorageUtils (= 5.8.1)
+  - AppMetricaCoreExtension (5.8.1):
+    - AppMetricaCore (= 5.8.1)
+    - AppMetricaStorageUtils (= 5.8.1)
+  - AppMetricaCoreUtils (5.8.1):
+    - AppMetricaLog (= 5.8.1)
+  - AppMetricaCrashes (5.8.1):
+    - AppMetricaCore (= 5.8.1)
+    - AppMetricaCoreExtension (= 5.8.1)
+    - AppMetricaCoreUtils (= 5.8.1)
+    - AppMetricaEncodingUtils (= 5.8.1)
+    - AppMetricaHostState (= 5.8.1)
+    - AppMetricaLog (= 5.8.1)
+    - AppMetricaPlatform (= 5.8.1)
+    - AppMetricaProtobufUtils (= 5.8.1)
+    - AppMetricaStorageUtils (= 5.8.1)
+    - KSCrash/Recording (< 2.1.0, >= 2.0.0-rc.1)
+  - AppMetricaEncodingUtils (5.8.1):
+    - AppMetricaCoreUtils (= 5.8.1)
+    - AppMetricaLog (= 5.8.1)
+    - AppMetricaPlatform (= 5.8.1)
+  - AppMetricaFMDB (5.8.1)
+  - AppMetricaHostState (5.8.1):
+    - AppMetricaCoreUtils (= 5.8.1)
+    - AppMetricaLog (= 5.8.1)
+  - AppMetricaLog (5.8.1)
+  - AppMetricaNetwork (5.8.1):
+    - AppMetricaCoreUtils (= 5.8.1)
+    - AppMetricaLog (= 5.8.1)
+    - AppMetricaPlatform (= 5.8.1)
+  - AppMetricaPlatform (5.8.1):
+    - AppMetricaCoreUtils (= 5.8.1)
+    - AppMetricaLog (= 5.8.1)
+  - AppMetricaProtobuf (5.8.1)
+  - AppMetricaProtobufUtils (5.8.1):
+    - AppMetricaProtobuf (= 5.8.1)
+  - AppMetricaStorageUtils (5.8.1):
+    - AppMetricaCoreUtils (= 5.8.1)
+    - AppMetricaLog (= 5.8.1)
+  - AppMetricaWebKit (5.8.1):
+    - AppMetricaCore (= 5.8.1)
+    - AppMetricaCoreUtils (= 5.8.1)
+    - AppMetricaLog (= 5.8.1)
+  - DivKit (30.21.0):
+    - DivKit_LayoutKit (= 30.21.0)
+    - DivKit_Serialization (= 30.21.0)
+    - VGSL (~> 6.0)
+  - DivKit_LayoutKit (30.21.0):
+    - DivKit_LayoutKitInterface (= 30.21.0)
+    - VGSL (~> 6.0)
+  - DivKit_LayoutKitInterface (30.21.0):
+    - VGSL (~> 6.0)
+  - DivKit_Serialization (30.21.0):
+    - VGSL (~> 6.0)
+  - DivKitBinaryCompatibilityFacade (4.4.0):
+    - DivKit (~> 30.9)
   - Firebase/CoreOnly (11.2.0):
     - FirebaseCore (= 11.2.0)
   - Firebase/Messaging (11.2.0):
@@ -61,6 +138,11 @@ PODS:
   - GoogleUtilities/UserDefaults (8.0.2):
     - GoogleUtilities/Logger
     - GoogleUtilities/Privacy
+  - KSCrash/Core (2.0.0-rc.4)
+  - KSCrash/Recording (2.0.0-rc.4):
+    - KSCrash/RecordingCore
+  - KSCrash/RecordingCore (2.0.0-rc.4):
+    - KSCrash/Core
   - nanopb (3.30910.0):
     - nanopb/decode (= 3.30910.0)
     - nanopb/encode (= 3.30910.0)
@@ -95,8 +177,26 @@ PODS:
     - sqlite3/fts5
     - sqlite3/perf-threadsafe
     - sqlite3/rtree
+  - VGSL (6.7.0):
+    - VGSLFundamentals (= 6.7.0)
+    - VGSLNetworking (= 6.7.0)
+    - VGSLUI (= 6.7.0)
+  - VGSLFundamentals (6.7.0)
+  - VGSLNetworking (6.7.0):
+    - VGSLFundamentals (= 6.7.0)
+    - VGSLUI (= 6.7.0)
+  - VGSLUI (6.7.0):
+    - VGSLFundamentals (= 6.7.0)
+  - yandex_mobileads (7.4.0):
+    - Flutter
+    - YandexMobileAds (~> 7.5.1)
+  - YandexMobileAds (7.5.1):
+    - AppMetricaCore (< 6.0.0, >= 5.0.0)
+    - AppMetricaCrashes (< 6.0.0, >= 5.0.0)
+    - DivKitBinaryCompatibilityFacade (= 4.4.0)
 
 DEPENDENCIES:
+  - appmetrica_plugin (from `.symlinks/plugins/appmetrica_plugin/ios`)
   - firebase_core (from `.symlinks/plugins/firebase_core/ios`)
   - firebase_messaging (from `.symlinks/plugins/firebase_messaging/ios`)
   - Flutter (from `Flutter`)
@@ -106,9 +206,31 @@ DEPENDENCIES:
   - share_plus (from `.symlinks/plugins/share_plus/ios`)
   - shared_preferences_foundation (from `.symlinks/plugins/shared_preferences_foundation/darwin`)
   - sqlite3_flutter_libs (from `.symlinks/plugins/sqlite3_flutter_libs/ios`)
+  - yandex_mobileads (from `.symlinks/plugins/yandex_mobileads/ios`)
 
 SPEC REPOS:
   trunk:
+    - AppMetricaAdSupport
+    - AppMetricaAnalytics
+    - AppMetricaCore
+    - AppMetricaCoreExtension
+    - AppMetricaCoreUtils
+    - AppMetricaCrashes
+    - AppMetricaEncodingUtils
+    - AppMetricaFMDB
+    - AppMetricaHostState
+    - AppMetricaLog
+    - AppMetricaNetwork
+    - AppMetricaPlatform
+    - AppMetricaProtobuf
+    - AppMetricaProtobufUtils
+    - AppMetricaStorageUtils
+    - AppMetricaWebKit
+    - DivKit
+    - DivKit_LayoutKit
+    - DivKit_LayoutKitInterface
+    - DivKit_Serialization
+    - DivKitBinaryCompatibilityFacade
     - Firebase
     - FirebaseCore
     - FirebaseCoreInternal
@@ -116,11 +238,19 @@ SPEC REPOS:
     - FirebaseMessaging
     - GoogleDataTransport
     - GoogleUtilities
+    - KSCrash
     - nanopb
     - PromisesObjC
     - sqlite3
+    - VGSL
+    - VGSLFundamentals
+    - VGSLNetworking
+    - VGSLUI
+    - YandexMobileAds
 
 EXTERNAL SOURCES:
+  appmetrica_plugin:
+    :path: ".symlinks/plugins/appmetrica_plugin/ios"
   firebase_core:
     :path: ".symlinks/plugins/firebase_core/ios"
   firebase_messaging:
@@ -139,8 +269,32 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/shared_preferences_foundation/darwin"
   sqlite3_flutter_libs:
     :path: ".symlinks/plugins/sqlite3_flutter_libs/ios"
+  yandex_mobileads:
+    :path: ".symlinks/plugins/yandex_mobileads/ios"
 
 SPEC CHECKSUMS:
+  appmetrica_plugin: 22d4d1eb9d070509fce428774b7f0d0686564010
+  AppMetricaAdSupport: da744703342f003d7766dd03a5a070cca0a591c4
+  AppMetricaAnalytics: 1778651a86e381827e8e663314ac8b99c5bcfb3f
+  AppMetricaCore: 50968d9a5673bce38b7bcdd9a6fc85be1ea1b1ac
+  AppMetricaCoreExtension: 594dc51a8986f539ea719d66e248d91e76d2502d
+  AppMetricaCoreUtils: 05977363327e0fb6c2898ef827635399f840e14f
+  AppMetricaCrashes: b3ed2de6df85577a488737aee0a8610eb8486c0f
+  AppMetricaEncodingUtils: 5fd1f40e165cf0ec30ae01bba48ffcfaab2fcc2b
+  AppMetricaFMDB: 230a58d091733aa61d1a0bd9c459ff230b2c4572
+  AppMetricaHostState: 64392a6172c06fa0e5eff4232b49b0c5175c995f
+  AppMetricaLog: 7781a25e26594ab2b291785670a6410f1968bfa8
+  AppMetricaNetwork: 77b517922375ebe6cd0c0656967df6d7130040f8
+  AppMetricaPlatform: 4b5ae79e46c9457a6ed6c129a6ae702f1694c532
+  AppMetricaProtobuf: 17c8a9c35967580cea6f7215ca9abd6024f59477
+  AppMetricaProtobufUtils: 658c8608b2edb5c7d90463df72a0a80e715bfcb6
+  AppMetricaStorageUtils: 56a5345e7b82e7d778708b973fdcf0c657b49aca
+  AppMetricaWebKit: b15a5c78fdeaca729a5b218509459d17d357b293
+  DivKit: 5d640f1e2e598b4f6f6bba7f28ab51ccf9de0248
+  DivKit_LayoutKit: ea3f725d0c568e9e8cf017ccd3603e2ea5e9c838
+  DivKit_LayoutKitInterface: e5ba671025b2614ae1cfee48a73dc7bb3a265951
+  DivKit_Serialization: 2871a3b2c0cc0b792533d8bf2ff0258ce2fad33b
+  DivKitBinaryCompatibilityFacade: 67da4a55a1aa874a85b052347467d64692c16a05
   Firebase: 98e6bf5278170668a7983e12971a66b2cd57fc8c
   firebase_core: 2bedc3136ec7c7b8561c6123ed0239387b53f2af
   firebase_messaging: 15d114e1a41fc31e4fbabcd48d765a19eec94a38
@@ -152,6 +306,7 @@ SPEC CHECKSUMS:
   flutter_local_notifications: 4cde75091f6327eb8517fa068a0a5950212d2086
   GoogleDataTransport: aae35b7ea0c09004c3797d53c8c41f66f219d6a7
   GoogleUtilities: 26a3abef001b6533cf678d3eb38fd3f614b7872d
+  KSCrash: d45094d12f4c82bcec2f0574dbd5a34a5db788de
   nanopb: fad817b59e0457d11a5dfbde799381cd727c1275
   package_info_plus: 58f0028419748fad15bf008b270aaa8e54380b1c
   path_provider_foundation: 2b6b4c569c0fb62ec74538f866245ac84301af46
@@ -160,7 +315,13 @@ SPEC CHECKSUMS:
   shared_preferences_foundation: fcdcbc04712aee1108ac7fda236f363274528f78
   sqlite3: 0bb0e6389d824e40296f531b858a2a0b71c0d2fb
   sqlite3_flutter_libs: c00457ebd31e59fa6bb830380ddba24d44fbcd3b
+  VGSL: 51225872b4a7ad1689b984a7be46468b6a636956
+  VGSLFundamentals: f403d8bb1cecd74b764342de7d32c01288afa1f4
+  VGSLNetworking: 9fb2c6b1f99eea4b52933b33c45b93c5f66baa9b
+  VGSLUI: 6e690dfc294a4e878f67dfd39055f0917e9672ba
+  yandex_mobileads: 553ee2e66551f1e59b8ee4c2be548cd0132ae939
+  YandexMobileAds: 20c4a71cd50876b6d1f24fe394114476e9944efc
 
-PODFILE CHECKSUM: a57f30d18f102dd3ce366b1d62a55ecbef2158e5
+PODFILE CHECKSUM: 0b0153ed14dae6bc4e4caecad919f1588659e618
 
 COCOAPODS: 1.15.2

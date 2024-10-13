@@ -3,7 +3,7 @@ description: A new Flutter project.
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
-version: 2.0.0+13
+version: 2.0.0+14
 
 environment:
   sdk: '>=3.0.6 <4.0.0'
@@ -38,6 +38,10 @@ dependencies:
   talker_flutter: 4.4.1
   talker_dio_logger: 4.4.1
   talker_bloc_logger: 4.4.1
+
+  # Vendors
+  yandex_mobileads: ^7.4.0
+  appmetrica_plugin: ^3.1.0
 
   # Platform
   package_info_plus: ^8.0.3
