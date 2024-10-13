@@ -15,34 +15,46 @@ final class RhymesListLoaded extends RhymesListState {
   const RhymesListLoaded({
     required this.rhymes,
     required this.query,
-    required List<FavoriteRhymes> favoriteRhymes,
-  }) : _favoriteRhymes = favoriteRhymes;
+    required this.favorites,
+  });
 
   final String query;
   final Rhymes rhymes;
-  final List<FavoriteRhymes> _favoriteRhymes;
+  final List<FavoriteRhyme> favorites;
 
-  bool isFavorite(String rhyme) {
-    return _favoriteRhymes
-        .where((e) => e.favoriteWord == rhyme && e.queryWord == query)
-        .isNotEmpty;
+  FavoriteRhyme? favorite(String rhyme) {
+    return favorites.firstWhereOrNull(
+      (e) => e.favoriteWord == rhyme && e.queryWord == query,
+    );
   }
 
   @override
-  List<Object> get props =>
-      super.props..addAll([rhymes, query, _favoriteRhymes]);
+  List<Object> get props => super.props..addAll([rhymes, query, favorites]);
 
   RhymesListLoaded copyWith({
     String? query,
     Rhymes? rhymes,
-    List<FavoriteRhymes>? favoriteRhymes,
+    List<FavoriteRhyme>? favorites,
   }) {
     return RhymesListLoaded(
       query: query ?? this.query,
       rhymes: rhymes ?? this.rhymes,
-      favoriteRhymes: favoriteRhymes ?? _favoriteRhymes,
+      favorites: favorites ?? this.favorites,
     );
   }
+}
+
+final class RhymesStressedCharsSelection extends RhymesListState {
+  const RhymesStressedCharsSelection({
+    required this.stressedChars,
+    required this.query,
+  });
+
+  final String query;
+  final List<String> stressedChars;
+
+  @override
+  List<Object> get props => super.props..addAll([stressedChars, query]);
 }
 
 final class RhymesListFailure extends RhymesListState {

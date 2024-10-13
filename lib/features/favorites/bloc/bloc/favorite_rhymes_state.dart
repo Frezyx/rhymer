@@ -14,7 +14,7 @@ final class FavoriteRhymesLoading extends FavoriteRhymesState {}
 final class FavoriteRhymesLoaded extends FavoriteRhymesState {
   const FavoriteRhymesLoaded({required this.rhymes});
 
-  final List<FavoriteRhymes> rhymes;
+  final List<FavoriteRhyme> rhymes;
 
   @override
   List<Object> get props => super.props..add(rhymes);

@@ -4,12 +4,14 @@ import 'package:rhymer/ui/ui.dart';
 class RhymeListCard extends StatelessWidget {
   const RhymeListCard({
     super.key,
+    this.id,
     this.isFavorite = false,
     required this.rhyme,
     this.sourceWord,
     required this.onTap,
   });
 
+  final int? id;
   final String rhyme;
   final String? sourceWord;
   final bool isFavorite;
@@ -20,6 +22,7 @@ class RhymeListCard extends StatelessWidget {
     final theme = Theme.of(context);
     return BaseConatiner(
       margin: const EdgeInsets.symmetric(horizontal: 16).copyWith(bottom: 10),
+      padding: EdgeInsets.only(left: 12),
       width: double.infinity,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,

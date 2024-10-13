@@ -6,16 +6,15 @@ part of 'rhymes.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-Rhymes _$RhymesFromJson(Map<String, dynamic> json) => Rhymes(
-      words: (json['words'] as List<dynamic>).map((e) => e as String).toList(),
+RhymesDto _$RhymesDtoFromJson(Map<String, dynamic> json) => RhymesDto(
+      rhymes:
+          (json['rhymes'] as List<dynamic>?)?.map((e) => e as String).toList(),
+      stressedChars: (json['stressedChars'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList(),
     );
 
-Map<String, dynamic> _$RhymesToJson(Rhymes instance) => <String, dynamic>{
-      'words': instance.words,
+Map<String, dynamic> _$RhymesDtoToJson(RhymesDto instance) => <String, dynamic>{
+      'rhymes': instance.rhymes,
+      'stressedChars': instance.stressedChars,
     };
-
-// **************************************************************************
-// RealmObjectGenerator
-// **************************************************************************
-
-// ignore_for_file: type=lint

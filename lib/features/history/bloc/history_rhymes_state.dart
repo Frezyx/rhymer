@@ -14,7 +14,7 @@ final class HistoryRhymesLoading extends HistoryRhymesState {}
 final class HistoryRhymesLoaded extends HistoryRhymesState {
   const HistoryRhymesLoaded({required this.rhymes});
 
-  final List<HistoryRhymes> rhymes;
+  final List<HistoryRhyme> rhymes;
 
   @override
   List<Object> get props => super.props..add(rhymes);

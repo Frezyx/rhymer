@@ -9,11 +9,11 @@ sealed class FavoriteRhymesEvent extends Equatable {
 
 final class LoadFavoriteRhymes extends FavoriteRhymesEvent {}
 
-final class ToggleFavoriteRhyme extends FavoriteRhymesEvent {
-  const ToggleFavoriteRhyme(this.favoriteRhyme);
+final class DeleteFavoriteRhyme extends FavoriteRhymesEvent {
+  const DeleteFavoriteRhyme(this.rhyme);
 
-  final FavoriteRhymes favoriteRhyme;
+  final FavoriteRhyme rhyme;
 
   @override
-  List<Object> get props => super.props..add(favoriteRhyme);
+  List<Object> get props => super.props..add(rhyme);
 }
