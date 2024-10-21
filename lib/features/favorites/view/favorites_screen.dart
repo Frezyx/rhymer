@@ -5,12 +5,11 @@ import 'package:rhymer/features/favorites/bloc/bloc/favorite_rhymes_bloc.dart';
 import 'package:rhymer/features/favorites/widgets/widgets.dart';
 import 'package:rhymer/repositories/favorites/favorites.dart';
 import 'package:rhymer/ui/ui.dart';
+import 'package:rhymer/utils/analytics/analytics.dart';
 
 @RoutePage()
 class FavoritesScreen extends StatefulWidget {
-  const FavoritesScreen({
-    super.key,
-  });
+  const FavoritesScreen({super.key});
 
   @override
   State<FavoritesScreen> createState() => _FavoritesScreenState();
@@ -72,5 +71,6 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
     BlocProvider.of<FavoriteRhymesBloc>(context).add(
       DeleteFavoriteRhyme(rhyme),
     );
+    Analytics.i.log(AnalyticsEvents.favorites.removeFromFavorites);
   }
 }

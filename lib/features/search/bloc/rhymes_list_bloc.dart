@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rhymer/repositories/favorites/favorites.dart';
 import 'package:rhymer/repositories/history/history.dart';
 import 'package:rhymer/repositories/rhymes/rhymes.dart';
+import 'package:rhymer/utils/analytics/analytics.dart';
 import 'package:rhymer/utils/extensions/extensions.dart';
 
 part 'rhymes_list_event.dart';
@@ -95,6 +96,14 @@ class RhymesListBloc extends Bloc<RhymesListEvent, RhymesListState> {
       emit(RhymesListFailure(e));
     } finally {
       event.completer?.complete();
+      _logToggleFavorite(event);
     }
+  }
+
+  void _logToggleFavorite(ToggleFavoriteRhymes event) {
+    final analyticsEvent = event.favorite != null
+        ? AnalyticsEvents.favorites.removeFromFavorites
+        : AnalyticsEvents.favorites.addToFavorites;
+    Analytics.i.log(analyticsEvent);
   }
 }
