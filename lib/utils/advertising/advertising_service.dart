@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:rhymer/utils/analytics/analytics.dart';
 import 'package:talker_flutter/talker_flutter.dart';
 import 'package:yandex_mobileads/mobile_ads.dart';
 
@@ -28,8 +29,8 @@ class AdvertisingService {
       adUnitId: adUnitId,
       // adUnitId: 'demo-banner-yandex', // or 'demo-banner-yandex'
       adSize: size,
-
-      onAdLoaded: () {},
+      onAdLoaded: () => Analytics.i.log(AnalyticsEvents.ads.loadAdsBanner1),
+      onAdClicked: () => Analytics.i.log(AnalyticsEvents.ads.clickAdsBanner1),
       onAdFailedToLoad: talker.handle,
     );
   }
