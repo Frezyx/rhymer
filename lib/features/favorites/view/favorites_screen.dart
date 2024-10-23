@@ -52,7 +52,8 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                       id: rhyme.id,
                       rhyme: rhyme.favoriteWord,
                       sourceWord: rhyme.queryWord,
-                      onTap: () => _toggleFavoriteRhyme(context, rhyme),
+                      onLikeTap: () => _toggleFavoriteRhyme(context, rhyme),
+                      onCopied: _onRhymeCopied,
                     );
                   },
                 );
@@ -65,6 +66,10 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
         ],
       ),
     );
+  }
+
+  void _onRhymeCopied() {
+    Analytics.i.log(Analytics.favorites.copyRhyme);
   }
 
   void _toggleFavoriteRhyme(BuildContext context, FavoriteRhyme rhyme) {

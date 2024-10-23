@@ -5,18 +5,20 @@ import 'package:rhymer/ui/ui.dart';
 class RhymeListCard extends StatelessWidget {
   const RhymeListCard({
     super.key,
+    required this.rhyme,
+    required this.onLikeTap,
     this.id,
     this.isFavorite = false,
-    required this.rhyme,
     this.sourceWord,
-    required this.onTap,
+    this.onCopied,
   });
 
   final int? id;
   final String rhyme;
   final String? sourceWord;
   final bool isFavorite;
-  final VoidCallback onTap;
+  final VoidCallback onLikeTap;
+  final VoidCallback? onCopied;
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +58,7 @@ class RhymeListCard extends StatelessWidget {
               ],
             ),
             IconButton(
-              onPressed: onTap,
+              onPressed: onLikeTap,
               icon: Icon(
                 Icons.favorite,
                 color: isFavorite
@@ -89,5 +91,6 @@ class RhymeListCard extends StatelessWidget {
         backgroundColor: colorScheme.primaryFixed,
       ),
     );
+    onCopied?.call();
   }
 }

@@ -135,7 +135,8 @@ class _SearchScreenState extends State<SearchScreen> {
                     return RhymeListCard(
                       rhyme: rhyme,
                       isFavorite: favorite != null,
-                      onTap: () => _toggleFavorite(
+                      onCopied: _onRhymeCopied,
+                      onLikeTap: () => _toggleFavorite(
                         context,
                         rhymesModel,
                         rhyme,
@@ -167,6 +168,10 @@ class _SearchScreenState extends State<SearchScreen> {
         ],
       ),
     );
+  }
+
+  void _onRhymeCopied() {
+    Analytics.i.log(Analytics.search.copyRhyme);
   }
 
   void _onClearTap() {
