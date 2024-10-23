@@ -5,6 +5,8 @@ import 'package:rhymer/app/repository_container.dart';
 import 'package:rhymer/bloc/theme/theme_cubit.dart';
 import 'package:rhymer/router/router.dart';
 import 'package:rhymer/ui/ui.dart';
+import 'package:rhymer/utils/analytics/analytics.dart';
+import 'package:talker_flutter/talker_flutter.dart';
 
 class RhymerApp extends StatefulWidget {
   const RhymerApp({
@@ -36,7 +38,12 @@ class _RhymerAppState extends State<RhymerApp> {
             title: 'Rhymer',
             theme: state.isDark ? darkTheme : lightTheme,
             debugShowCheckedModeBanner: false,
-            routerConfig: _router.config(),
+            routerConfig: _router.config(
+              navigatorObservers: () => [
+                Analytics.i.observer,
+                TalkerRouteObserver(context.read<Talker>()),
+              ],
+            ),
           );
         },
       ),
