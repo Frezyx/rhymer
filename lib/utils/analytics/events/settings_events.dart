@@ -10,8 +10,8 @@ class SettingsEvents {
   final _selectLightTheme = 'select_light_theme';
   final _selectDarkTheme = 'select_dark_theme';
 
-  Future<void> selectTheme(Brightness brightness) async {
+  void selectTheme(Brightness brightness) {
     final isDark = brightness == Brightness.dark;
-    await Analytics.i.log(isDark ? _selectDarkTheme : _selectLightTheme);
+    Analytics.i.log(isDark ? _selectDarkTheme : _selectLightTheme);
   }
 }
