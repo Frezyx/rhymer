@@ -71,6 +71,6 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
     BlocProvider.of<FavoriteRhymesBloc>(context).add(
       DeleteFavoriteRhyme(rhyme),
     );
-    Analytics.i.log(Analytics.favorites.removeFromFavorites);
+    Analytics.favorites.toggleFavorite(false);
   }
 }

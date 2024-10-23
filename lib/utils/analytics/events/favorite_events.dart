@@ -1,6 +1,12 @@
+import 'package:rhymer/utils/analytics/analytics.dart';
+
 class FavoriteEvents {
   const FavoriteEvents();
 
-  final addToFavorites = 'add_to_favorites';
-  final removeFromFavorites = 'remove_from_favorites';
+  final _addToFavorites = 'add_favorite';
+  final _removeFromFavorites = 'remove_favorite';
+
+  void toggleFavorite(bool favorite) {
+    Analytics.i.log(favorite ? _addToFavorites : _removeFromFavorites);
+  }
 }
