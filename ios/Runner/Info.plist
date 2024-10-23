@@ -26,79 +26,45 @@
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-	<key>UIApplicationSupportsIndirectInputEvents</key>
-	<true/>
-	<key>UIBackgroundModes</key>
-	<array>
-		<string>fetch</string>
-		<string>remote-notification</string>
-	</array>
-	<key>UILaunchStoryboardName</key>
-	<string>LaunchScreen</string>
-	<key>UIMainStoryboardFile</key>
-	<string>Main</string>
-	<key>UISupportedInterfaceOrientations</key>
-	<array>
-		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
-	</array>
-	<key>UISupportedInterfaceOrientations~ipad</key>
-	<array>
-		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationPortraitUpsideDown</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
-	</array>
 	<key>SKAdNetworkItems</key>
 	<array>
 		<dict>
-			<!-- Yandex Ads -->
 			<key>SKAdNetworkIdentifier</key>
 			<string>zq492l623r.skadnetwork</string>
 		</dict>
 		<dict>
-			<!-- Google (ex. AdMob) -->
 			<key>SKAdNetworkIdentifier</key>
 			<string>cstr6suwn9.skadnetwork</string>
 		</dict>
 		<dict>
-			<!-- VK Реклама (ex. myTarget) -->
 			<key>SKAdNetworkIdentifier</key>
 			<string>n9x2a789qt.skadnetwork</string>
 		</dict>
 		<dict>
-			<!-- VK Реклама (ex. myTarget) -->
 			<key>SKAdNetworkIdentifier</key>
 			<string>r26jy69rpl.skadnetwork</string>
 		</dict>
 		<dict>
-			<!-- Start.io -->
 			<key>SKAdNetworkIdentifier</key>
 			<string>5l3tpt7t6e.skadnetwork</string>
 		</dict>
 		<dict>
-			<!-- Vungle -->
 			<key>SKAdNetworkIdentifier</key>
 			<string>gta9lk7p23.skadnetwork</string>
 		</dict>
 		<dict>
-			<!-- UnityAds -->
 			<key>SKAdNetworkIdentifier</key>
 			<string>4dzt52r2t5.skadnetwork</string>
 		</dict>
 		<dict>
-			<!-- IronSource -->
 			<key>SKAdNetworkIdentifier</key>
 			<string>su67r6k2v3.skadnetwork</string>
 		</dict>
 		<dict>
-			<!-- Applovin -->
 			<key>SKAdNetworkIdentifier</key>
 			<string>ludvb6z3bs.skadnetwork</string>
 		</dict>
 		<dict>
-			<!-- Mintegral -->
 			<key>SKAdNetworkIdentifier</key>
 			<string>kbd757ywx3.skadnetwork</string>
 		</dict>
@@ -954,6 +920,32 @@
 			<key>SKAdNetworkIdentifier</key>
 			<string>g69uk9uh2b.skadnetwork</string>
 		</dict>
+	</array>
+	<key>UIApplicationSupportsIndirectInputEvents</key>
+	<true/>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>fetch</string>
+		<string>remote-notification</string>
+	</array>
+	<key>UILaunchStoryboardName</key>
+	<string>LaunchScreen</string>
+	<key>UIMainStoryboardFile</key>
+	<string>Main</string>
+	<key>UIStatusBarStyle</key>
+	<string></string>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+	<key>UISupportedInterfaceOrientations~ipad</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 </dict>
 </plist>
