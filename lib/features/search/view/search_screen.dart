@@ -11,6 +11,7 @@ import 'package:rhymer/repositories/favorites/favorites.dart';
 import 'package:rhymer/repositories/notifications/notifications.dart';
 import 'package:rhymer/repositories/rhymes/models/models.dart';
 import 'package:rhymer/ui/ui.dart';
+import 'package:rhymer/utils/analytics/analytics_service.dart';
 import 'package:talker_flutter/talker_flutter.dart';
 
 @RoutePage()
@@ -72,6 +73,8 @@ class _SearchScreenState extends State<SearchScreen> {
                         child: SearchTextField(
                           controller: _searchController,
                           onSubmitted: (value) => _onTapSearch(context),
+                          onEditingComplete: _onEditingCompleted,
+                          onClearTap: _onClearTap,
                         ),
                       ),
                     ),
@@ -166,14 +169,20 @@ class _SearchScreenState extends State<SearchScreen> {
     );
   }
 
+  void _onClearTap() {
+    Analytics.i.log(Analytics.search.clearTap);
+  }
+
+  void _onEditingCompleted() {
+    Analytics.i.log(Analytics.search.completeEditing);
+  }
+
   void _showHistoryRhymes(BuildContext context, String query) {
     AutoTabsRouter.of(context).setActiveIndex(0);
     context.read<RhymesListBloc>().add(
-          SearchRhymes(
-            query: query,
-            addToHistory: false,
-          ),
+          SearchRhymes(query: query, addToHistory: false),
         );
+    Analytics.i.log(Analytics.history.tapRhyme);
   }
 
   void _onTapSearch(BuildContext context) {
@@ -185,6 +194,7 @@ class _SearchScreenState extends State<SearchScreen> {
 
   void _fetchQuery(BuildContext context, String query) {
     context.read<RhymesListBloc>().add(SearchRhymes(query: query));
+    Analytics.i.log(Analytics.search.rhyme);
   }
 
   Future<void> _toggleFavorite(

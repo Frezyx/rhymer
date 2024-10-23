@@ -5,6 +5,7 @@ import 'package:rhymer/features/history/bloc/history_rhymes_bloc.dart';
 import 'package:rhymer/features/history/widgets/widgets.dart';
 import 'package:rhymer/features/search/bloc/rhymes_list_bloc.dart';
 import 'package:rhymer/ui/ui.dart';
+import 'package:rhymer/utils/analytics/analytics_service.dart';
 
 @RoutePage()
 class HistoryScreen extends StatefulWidget {
@@ -80,10 +81,8 @@ class _HistoryScreenState extends State<HistoryScreen> {
   void _openSearchScreen(BuildContext context, String query) {
     AutoTabsRouter.of(context).setActiveIndex(0);
     context.read<RhymesListBloc>().add(
-          SearchRhymes(
-            query: query,
-            addToHistory: false,
-          ),
+          SearchRhymes(query: query, addToHistory: false),
         );
+    Analytics.i.log(Analytics.history.tapRhyme);
   }
 }
