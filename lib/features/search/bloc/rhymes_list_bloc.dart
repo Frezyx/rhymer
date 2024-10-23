@@ -102,8 +102,8 @@ class RhymesListBloc extends Bloc<RhymesListEvent, RhymesListState> {
 
   void _logToggleFavorite(ToggleFavoriteRhymes event) {
     final analyticsEvent = event.favorite != null
-        ? AnalyticsEvents.favorites.removeFromFavorites
-        : AnalyticsEvents.favorites.addToFavorites;
+        ? Analytics.favorites.removeFromFavorites
+        : Analytics.favorites.addToFavorites;
     Analytics.i.log(analyticsEvent);
   }
 }

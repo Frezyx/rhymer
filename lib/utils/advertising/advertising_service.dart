@@ -29,8 +29,8 @@ class AdvertisingService {
       adUnitId: adUnitId,
       // adUnitId: 'demo-banner-yandex', // or 'demo-banner-yandex'
       adSize: size,
-      onAdLoaded: () => Analytics.i.log(AnalyticsEvents.ads.loadAdsBanner1),
-      onAdClicked: () => Analytics.i.log(AnalyticsEvents.ads.clickAdsBanner1),
+      onAdLoaded: () => Analytics.i.log(Analytics.ads.loadAdsBanner1),
+      onAdClicked: () => Analytics.i.log(Analytics.ads.clickAdsBanner1),
       onAdFailedToLoad: talker.handle,
     );
   }

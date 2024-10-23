@@ -8,6 +8,10 @@ class Analytics implements AnalyticsI {
   static Analytics get i => _analytics;
   static final Analytics _analytics = Analytics._();
 
+  static const favorites = FavoriteEvents();
+  static const ads = AdsEvents();
+  static const settings = SettingsEvents();
+
   @override
   Future<void> log(String name) async {
     await AppMetrica.reportEvent(name);
