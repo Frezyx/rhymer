@@ -1,32 +1,19 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:realm/realm.dart';
-import 'package:rhymer/repositories/favorites/favorites.dart';
-import 'package:rhymer/repositories/history/models/history_rhymes.dart';
 
 part 'rhymes.g.dart';
 
 @JsonSerializable()
-class Rhymes {
-  const Rhymes({required this.words});
+class RhymesDto {
+  const RhymesDto({
+    this.rhymes,
+    this.stressedChars,
+  });
 
-  factory Rhymes.fromJson(Map<String, dynamic> json) => _$RhymesFromJson(json);
+  final List<String>? rhymes;
+  final List<String>? stressedChars;
 
-  final List<String> words;
+  factory RhymesDto.fromJson(Map<String, dynamic> json) =>
+      _$RhymesDtoFromJson(json);
 
-  Map<String, dynamic> toJson() => _$RhymesToJson(this);
-
-  HistoryRhymes toHistory(String queryWord) => HistoryRhymes(
-        Uuid.v4().toString(),
-        queryWord,
-        words: words,
-      );
-
-  FavoriteRhymes toFavorite(String queryWord, String favoriteWord) =>
-      FavoriteRhymes(
-        Uuid.v4().toString(),
-        queryWord,
-        favoriteWord,
-        DateTime.now(),
-        words: words,
-      );
+  Map<String, dynamic> toJson() => _$RhymesDtoToJson(this);
 }
