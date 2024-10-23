@@ -33,6 +33,7 @@ class PlatformNavigationBar extends StatelessWidget {
       activeColor: theme.primaryColor,
       items: items,
       currentIndex: selectedIndex,
+      backgroundColor: theme.cardColor,
       onTap: onSelect,
     );
   }
