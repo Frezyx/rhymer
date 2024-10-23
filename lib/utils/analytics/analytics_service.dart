@@ -12,6 +12,7 @@ class Analytics implements AnalyticsI {
   static const favorites = FavoriteEvents();
   static const ads = AdsEvents();
   static const settings = SettingsEvents();
+  static const history = HistoryEvents();
 
   final _firebaseAnalytics = FirebaseAnalytics.instance;
 
