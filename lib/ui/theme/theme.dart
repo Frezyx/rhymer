@@ -22,6 +22,9 @@ final lightTheme = ThemeData(
   dividerTheme: DividerThemeData(
     color: Colors.grey.withOpacity(0.1),
   ),
+  // snackBarTheme: SnackBarThemeData(
+  //   backgroundColor: _primaryColor,
+  // ),
   colorScheme: ColorScheme.fromSeed(
     seedColor: _primaryColor,
     brightness: Brightness.light,

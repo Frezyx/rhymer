@@ -5,12 +5,11 @@ import 'package:rhymer/features/favorites/bloc/bloc/favorite_rhymes_bloc.dart';
 import 'package:rhymer/features/favorites/widgets/widgets.dart';
 import 'package:rhymer/repositories/favorites/favorites.dart';
 import 'package:rhymer/ui/ui.dart';
+import 'package:rhymer/utils/analytics/analytics.dart';
 
 @RoutePage()
 class FavoritesScreen extends StatefulWidget {
-  const FavoritesScreen({
-    super.key,
-  });
+  const FavoritesScreen({super.key});
 
   @override
   State<FavoritesScreen> createState() => _FavoritesScreenState();
@@ -53,7 +52,8 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                       id: rhyme.id,
                       rhyme: rhyme.favoriteWord,
                       sourceWord: rhyme.queryWord,
-                      onTap: () => _toggleFavoriteRhyme(context, rhyme),
+                      onLikeTap: () => _toggleFavoriteRhyme(context, rhyme),
+                      onCopied: _onRhymeCopied,
                     );
                   },
                 );
@@ -68,9 +68,14 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
     );
   }
 
+  void _onRhymeCopied() {
+    Analytics.i.log(Analytics.favorites.copyRhyme);
+  }
+
   void _toggleFavoriteRhyme(BuildContext context, FavoriteRhyme rhyme) {
     BlocProvider.of<FavoriteRhymesBloc>(context).add(
       DeleteFavoriteRhyme(rhyme),
     );
+    Analytics.favorites.toggleFavorite(false);
   }
 }

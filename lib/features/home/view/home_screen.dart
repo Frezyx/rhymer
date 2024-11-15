@@ -5,6 +5,7 @@ import 'package:rhymer/bloc/theme/theme_cubit.dart';
 import 'package:rhymer/router/router.dart';
 import 'package:rhymer/ui/ui.dart';
 import 'package:rhymer/utils/advertising/advertising_service.dart';
+import 'package:rhymer/utils/analytics/analytics_service.dart';
 import 'package:talker_flutter/talker_flutter.dart';
 import 'package:yandex_mobileads/mobile_ads.dart';
 
@@ -78,6 +79,9 @@ class _HomeScreenState extends State<HomeScreen> {
 
   void _openPage(int index, TabsRouter tabsRouter) {
     tabsRouter.setActiveIndex(index);
+    final tabRoutes = tabsRouter.routeCollection.routes.toList();
+    final path = tabRoutes[index].path;
+    Analytics.i.logScreenView('/$path');
   }
 
   Future<void> _initMobileAdd() async {

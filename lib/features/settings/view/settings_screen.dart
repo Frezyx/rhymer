@@ -7,6 +7,7 @@ import 'package:rhymer/bloc/theme/theme_cubit.dart';
 import 'package:rhymer/features/history/bloc/history_rhymes_bloc.dart';
 import 'package:rhymer/features/settings/widgets/widgets.dart';
 import 'package:rhymer/ui/ui.dart';
+import 'package:rhymer/utils/analytics/analytics.dart';
 
 @RoutePage()
 class SettingsScreen extends StatefulWidget {
@@ -118,12 +119,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
       context: context,
       builder: (context) => const SupportBottomSheet(),
     );
+    Analytics.i.log(Analytics.settings.openSupport);
   }
 
   void _setThemeBrightness(BuildContext context, bool value) {
-    context.read<ThemeCubit>().setThemeBrightness(
-          value ? Brightness.dark : Brightness.light,
-        );
+    final brightness = value ? Brightness.dark : Brightness.light;
+    context.read<ThemeCubit>().setThemeBrightness(brightness);
+    Analytics.settings.selectTheme(brightness);
   }
 
   void _confirmClearHistory(BuildContext context) {
@@ -142,9 +144,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
       barrierDismissible: true,
       builder: (context) => dialog,
     );
+    Analytics.i.log(Analytics.settings.clearHistory);
   }
 
   void _clearHistory(BuildContext context) {
     BlocProvider.of<HistoryRhymesBloc>(context).add(ClearRhymesHistory());
+    Analytics.i.log(Analytics.settings.openSupport);
   }
 }

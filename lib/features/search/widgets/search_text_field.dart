@@ -5,10 +5,14 @@ class SearchTextField extends StatefulWidget {
     super.key,
     required this.controller,
     this.onSubmitted,
+    this.onEditingComplete,
+    this.onClearTap,
   });
 
   final TextEditingController controller;
   final ValueChanged<String>? onSubmitted;
+  final VoidCallback? onEditingComplete;
+  final VoidCallback? onClearTap;
 
   @override
   State<SearchTextField> createState() => _SearchTextFieldState();
@@ -26,6 +30,7 @@ class _SearchTextFieldState extends State<SearchTextField> {
         controller: widget.controller,
         textInputAction: TextInputAction.search,
         onSubmitted: widget.onSubmitted,
+        onEditingComplete: widget.onEditingComplete,
         decoration: InputDecoration(
           hintText: 'Начни вводить слово...',
           hintStyle: TextStyle(
@@ -54,6 +59,7 @@ class _SearchTextFieldState extends State<SearchTextField> {
 
   void _clearText() {
     widget.controller.clear();
+    widget.onClearTap?.call();
   }
 
   void _onFocusChanged(bool value) {

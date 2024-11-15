@@ -1,6 +1,7 @@
 import 'package:appmetrica_plugin/appmetrica_plugin.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -28,7 +29,12 @@ Future<void> main() async {
 
   final prefs = await _initPrefs();
   final database = AppDatabase();
-  final talker = TalkerFlutter.init();
+  final talker = TalkerFlutter.init(
+    settings: TalkerSettings(
+      useConsoleLogs: kDebugMode,
+      useHistory: kDebugMode,
+    ),
+  );
   final apiClient = RhymerApiClient.create(apiUrl: apiUrl, talker: talker);
 
   Bloc.observer = TalkerBlocObserver(
